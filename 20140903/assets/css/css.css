@@ -1,0 +1,117 @@
+body{
+    background-color: #E0ECF1;
+    font-family: Arial;
+    font-size:15px;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+a{color: blue}
+
+.divAlignCenter{
+    margin:0 auto;
+}
+
+.loginBox{
+    background: none repeat scroll 0 0 #ccc;
+    margin-top: 20px;
+    padding: 15px;
+    width: 320px;
+}
+.loginBox label{
+    width:30%;
+    float: left;
+}
+.loginBox input{
+    width:66%;
+    float:left;
+}
+.loginBox div{
+    margin-bottom: 15px;
+    overflow: hidden
+}
+
+.listPage{
+    min-width: 980px;
+    padding:30px;
+}
+
+.logoutBtn{
+    float:right;
+    margin: 0 10px;
+}
+.listPage h1 span{font-size:14px;font-weight: normal;}
+
+.listTable{font-family: arial;font-size:12px;width:100%;color:#363636}
+.listTable td{
+    padding:5px ;
+}
+.listTdTitle{font-weight: bold}
+.listHr{margin:0px 0;color:#eee}
+
+.listPassAllBtn{
+    float: right;
+}
+
+.altBg{background-color:#fff}
+.altBg2{background-color:#EAF8FF}
+
+.error{color:red}
+
+
+
+
+/* jQuery Countdown styles 1.6.2. */
+.hasCountdown {
+	border: 1px solid #ccc;
+	background-color: #eee;
+}
+.countdown_rtl {
+	direction: rtl;
+}
+.countdown_holding span {
+	color: #888;
+}
+.countdown_row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+}
+.countdown_show1 .countdown_section {
+	width: 98%;
+}
+.countdown_show2 .countdown_section {
+	width: 48%;
+}
+.countdown_show3 .countdown_section {
+	width: 32.5%;
+}
+.countdown_show4 .countdown_section {
+	width: 24.5%;
+}
+.countdown_show5 .countdown_section {
+	width: 19.5%;
+}
+.countdown_show6 .countdown_section {
+	width: 16.25%;
+}
+.countdown_show7 .countdown_section {
+	width: 14%;
+}
+.countdown_section {
+	display: block;
+	float: left;
+	font-size: 75%;
+	text-align: center;
+}
+.countdown_amount {
+	font-size: 200%;
+}
+.countdown_descr {
+	display: block;
+	width: 100%;
+}
+/* jQuery Countdown styles 1.6.2. */
+
+#defaultCountdown { position:fixed;  height: 40px; line-height:40px;}

@@ -1,0 +1,26 @@
+{% extends "structure/base.html.twig" %}
+
+{% block content %}
+    <h1 class="divAlignCenter" style="width:320px;">Enquiries Panel</h1>
+    <div class="divAlignCenter loginBox">
+        
+        {% if flash.loginError is not empty %}
+        <p class="error">{{ flash.loginError  }}</p>
+        {% endif %}
+
+        <form action="" method="POST">
+            <div>
+                <label for="login">Login ID:</label>
+                <input type="text" id="login" name="login">
+            </div>
+            <div>
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" name="pwd">
+            </div>
+            <div>
+                <label>&nbsp;</label>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+{% endblock %}

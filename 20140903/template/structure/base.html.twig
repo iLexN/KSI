@@ -1,0 +1,16 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html class="no-js">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{{ urlFor('css', {"css": "css.css"}) }}" type="text/css">
+    
+</head>
+<body>
+    {% block content %}{% endblock %}
+    
+    
+    {% block bottomJS %}{% endblock %}
+</body>
+</html>
+{% endspaceless %}

@@ -1,0 +1,22 @@
+{# empty Twig template #}
+{% extends "structure/base.html.twig" %}
+{% block content %}
+    <div class="divAlignCenter listPage">
+        {% if flash.quoteError is not empty %}
+            <p class="error">{{ flash.quoteError  }}</p>
+        {% endif %}
+
+        <h2>Below is Pushed Result</h2>
+        <ul>
+            {% for email in emailArray %}
+            <li>{{ email.email }} 
+                {% if email.rePush == 1 %}
+                    / <span class="error">Can not re-push</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <p><a href=" {{ urlFor('list') }} ">Click Here to go Back</a></p>
+    </div>
+{% endblock %}
