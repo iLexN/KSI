@@ -1,4 +1,12 @@
 <?php
+/**
+ *
+ * Quote Model
+ * starting static function listed
+ * downloadQuote()
+ * outstandingQuote()
+ * pushOneQuote().
+ */
 
 namespace Ksi;
 
@@ -22,6 +30,9 @@ class Quote
      */
     public $ormObjFromLocal;
 
+    /**
+     * nothing
+     */
     public function __construct()
     {
     }
@@ -40,6 +51,8 @@ class Quote
     }
 
     /**
+     * set the ORM object for Locat DB
+     *
      * @param object $ormObj orm-object
      */
     public function setOrmObjFromLocal($ormObj)
@@ -47,6 +60,9 @@ class Quote
         $this->ormObjFromLocal = $ormObj;
     }
 
+    /**
+     * Save the download data from source to local
+     */
     private function saveDownload()
     {
         $this->ormObjFromLocal = ORM::for_table('motor_quote', 'local')->create();
