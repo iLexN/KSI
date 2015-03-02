@@ -1,6 +1,6 @@
 <?php
 /**
- * Load the model
+ * Load the model ff
  */
 include('User.php');
 include('Quote.php');
