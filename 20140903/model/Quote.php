@@ -345,7 +345,13 @@ class Quote
         $yellowSheetOrm->Driver_One_Age = $this->ormObjFromLocal->age;
         $yellowSheetOrm->Driver_One_Driving_Experience = html_entity_decode($this->ormObjFromLocal->drivingExp);
         $yellowSheetOrm->Driver_One_Occupation = mb_convert_encoding(html_entity_decode($this->ormObjFromLocal->occupation), "BIG5", "UTF-8");
+        
         $yellowSheetOrm->NCD = $this->ormObjFromLocal->ncd;
+        $yellowSheetOrm->quote_one_ncd = $this->ormObjFromLocal->ncd;
+        $yellowSheetOrm->quote_two_ncd = $this->ormObjFromLocal->ncd;
+        $yellowSheetOrm->quote_three_ncd = $this->ormObjFromLocal->ncd;
+        $yellowSheetOrm->quote_four_ncd = $this->ormObjFromLocal->ncd;
+        
         $yellowSheetOrm->ksi_si_no = $this->ormObjFromLocal->ksi_si_no;
         $yellowSheetOrm->ys_client_no = $this->ormObjFromLocal->ys_client_no;
 
