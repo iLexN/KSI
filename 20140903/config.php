@@ -35,9 +35,9 @@ ORM::configure('return_result_sets', true , 'source');
 ORM::configure('caching', true , 'source');
 ORM::configure('caching_auto_clear', true , 'source'); // automatically clear it on save
 ORM::configure('logging', false ,  'source');
-/*ORM::configure('logger', function($log_string, $query_time) {
+ORM::configure('logger', function($log_string, $query_time) {
     echo $log_string . ' in ' . $query_time . '<br/>';
-}, 'source');*/
+}, 'source');
 
 //yellowsheet connection
 ORM::configure('mysql:host=' . $ksiDbHost . ';dbname=' . $ksiDbName , null, 'ksi');

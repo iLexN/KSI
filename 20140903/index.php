@@ -95,6 +95,59 @@ $app->post('/pass',$authenticate($app) , function() use ($app){
 })->name('pass');
 
 
+$app->get('/compare/:id',$authenticate($app) , function($id) use ($app){
+    
+    $newQuote = ORM::for_table('motor_quote', 'local')->
+                    where('id', $id)->
+                    find_one();
+    
+    $oldQuote = ORM::for_table('motor_quote', 'local')->
+                    where('id', $newQuote->oldRefID)->
+                    find_one();
+    
+    //print_r($newQuote->as_array());
+    //print_r($oldQuote->as_array());
+    
+    echo('<table border="1">');
+    echo('<tr>');
+        echo('<td></td>');
+        echo('<td></td>');
+        echo('<td>Old Ref Info</td>');
+    echo('</tr>');
+    
+    
+    
+    foreach( $newQuote->as_array() as $k => $v) {
+        
+        if ( $k=='refno') continue;
+        if ( $k=='oldRefID') continue;
+        if ( $k=='drivingExp_key') continue;
+        if ( $k=='carMake_key') continue;
+        if ( $k=='carModel_key') continue;
+        if ( $k=='occupation_key') continue;
+        if ( $k=='drivingExp_key2') continue;
+        if ( $k=='occupation_key2') continue;
+        
+        $style = '';
+        
+        if ( $newQuote->$k != $oldQuote->$k) {
+            $style = 'style="color:red"';
+        } else {
+            continue;
+        }
+        
+        echo('<tr>');
+            //echo('<td '.$style.'>' .$k. '</td>');
+            echo('<td>' .$k. '</td>');
+            echo('<td>' .$newQuote->$k. '</td>');
+            echo('<td>' .$oldQuote->$k. '</td>');
+        echo('</tr>');
+    }
+    echo('</table>');
+    
+});
+
+
 //assets 
 $app->get('/js/:js',function($js) use ($app) {
     $app->response->headers->set('Content-Type', 'application/javascript;charset=utf-8 ');

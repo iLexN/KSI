@@ -47,7 +47,7 @@ class Quote
         $this->ormObjFromSource = $ormQuote;
         $this->saveDownload();
         $this->updateSourceDownload();
-        $this->findDuplicate();
+        //$this->findDuplicate();
     }
 
     /**
@@ -106,6 +106,13 @@ class Quote
         }
 
         return 'No';
+    }
+    
+    public function hasOldRefID(){
+        if ( $this->ormObjFromLocal->oldRefID != 0 ) {
+            return '<a href="compare/'.$this->ormObjFromLocal->id.'" class="oldrefid">'.$this->ormObjFromLocal->oldRefID . '</a>';
+        }
+        return '';
     }
 
     /**
@@ -214,16 +221,25 @@ class Quote
 
     /**
      * Download the data from the source database, crontab use.
-     *
+     * 
+     * @param string $t a = auto , m = not auto
      * @return array downloaded Quote ID
      */
-    public static function downloadQuote()
+    public static function downloadQuote($t = 'a')
     {
-        $manyQuote = ORM::for_table('motor_quote', 'source')->
+        //->where_lt('create_datetime', date("Y-m-d H:i:s",strtotime("-1 day"))  )
+        
+        $manyQuoteOrm = ORM::for_table('motor_quote', 'source')->
                     where('download', 0)->
-                    limit(5)->
-                    order_by_asc('id')->
-                    find_many();
+                    order_by_asc('id');
+                    
+        
+        if ( $t == 'a') {
+            $manyQuoteOrm->where_lt('create_datetime', date("Y-m-d H:i:s",strtotime("-15 minutes"))  );
+        }
+        
+        $manyQuote = $manyQuoteOrm->find_many();
+        
         $arQuoteIdAr = array();
         foreach ($manyQuote as $quoteOrm) {
             $q = new Quote();
@@ -245,7 +261,7 @@ class Quote
                     where('status', 0);
         $total = $manyQuote->count();
 
-        $manyQuote2 = $manyQuote->limit(50)->order_by_asc('id')->find_many();
+        $manyQuote2 = $manyQuote->limit(50)->order_by_asc('contactno')->order_by_asc('email')->order_by_asc('id')->find_many();
 
         $quoteOrmAr = array();
         foreach ($manyQuote2 as $quoteOrm) {
