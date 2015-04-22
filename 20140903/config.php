@@ -6,10 +6,18 @@
  */
 
 //db config
+/*
 $sourceDbHost = '10.0.2.10';
 $sourceDbName = 'ks-car2';
 $sourceDbUser = 'alex';
 $sourceDbPass = '329805';
+*/
+
+$sourceDbHost = 'pacificprime.com';
+$sourceDbName = 'ks-motor';
+$sourceDbUser = 'ks-motor';
+$sourceDbPass = 'jyR30m*6';
+
 
 //$ksiDbHost = '10.0.1.2';
 $ksiDbHost = '10.0.1.56';
