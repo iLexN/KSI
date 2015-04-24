@@ -108,6 +108,24 @@ class Quote
         return 'No';
     }
     
+    /**
+     * layout use function.
+     *
+     * @return string Yes/No
+     */
+    public function isPayButtonClick(){
+        
+        if( $this->ormObjFromLocal->payButtonClick == 1 ){
+            return 'Yes';
+        }
+        return ;
+    }
+    
+    /**
+     * layout use function.
+     *
+     * @return string <a>OldRef</a>
+     */
     public function hasOldRefID(){
         if ( $this->ormObjFromLocal->oldRefID != 0 ) {
             return '<a href="compare/'.$this->ormObjFromLocal->id.'" class="oldrefid">'.$this->ormObjFromLocal->oldRefID . '</a>';
