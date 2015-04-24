@@ -19,8 +19,8 @@ $sourceDbUser = 'ks-motor';
 $sourceDbPass = 'jyR30m*6';
 
 
-//$ksiDbHost = '10.0.1.2';
-$ksiDbHost = '10.0.1.56';
+$ksiDbHost = '10.0.1.2';
+//$ksiDbHost = '10.0.1.56';
 $ksiDbName = 'yellowsheet';
 $ksiDbUser = 'kwikkelvinwong';
 $ksiDbPass = 'kelvin903kwik';
