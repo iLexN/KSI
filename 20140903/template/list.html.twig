@@ -28,6 +28,7 @@
                 <td>Plan</td>
                 <!--<td>Duplicate</td>-->
                 <td>OldRefID</td>
+                <td>PayButton</td>
                 <td>Lang</td>
                 <td>Sale</td>
                 <td>&nbsp;</td>
@@ -45,6 +46,7 @@
                     <td>{{ quote.isPlans() }}</td>
                     <!--<td>{{ quote.isDuplicate() }}</td>-->
                     <td>{{ quote.hasOldRefID() | raw }}</td>
+                    <td>{{ quote.isPayButtonClick() | raw }}</td>
                     <td>{{ quote.langKeyMap() }}</td>
                     <td><select name="quote[{{ quote.ormObjFromLocal.id }}][sale]">{% include 'chunk/salesSelectOption.html.twig' %}</select> </td>
                     <td><input type="submit" name="pass[{{ quote.ormObjFromLocal.id }}]" value="Pass"></td>
