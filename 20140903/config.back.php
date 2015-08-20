@@ -21,7 +21,7 @@ $sourceDbPass = '';
 
 $ksiDbHost = '';
 //$ksiDbHost = '';
-$ksiDbName = 't';
+$ksiDbName = '';
 $ksiDbUser = '';
 $ksiDbPass = '';
 

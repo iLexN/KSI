@@ -2,7 +2,7 @@
 
 /* 
  * config
- * - database
+ * - databased
  */
 
 //db config
