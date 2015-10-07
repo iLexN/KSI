@@ -160,21 +160,26 @@ class Quote
      */
     public function isPlans()
     {
-        $planArray = json_decode($this->ormObjFromLocal->plan_match_json, true);
-        $str = '';
+        $jsonArray = json_decode($this->ormObjFromLocal->plan_match_json, true);
+        
+        $outArray = array();
 
-        if (array_key_exists('planName', $planArray)) {
-            $str .=  $planArray['planName'];
-        }
-        if (array_key_exists('subPlanName', $planArray)) {
-            if (is_array($planArray['subPlanName'])) {
-                $str .= " - ".implode(' & ', $planArray['subPlanName']);
-            } else {
-                $str .= " - ".$planArray['subPlanName'];
+        foreach ( $jsonArray as $planArray  ) {
+            $str = '';
+            if (array_key_exists('planName', $planArray)) {
+                $str .=  $planArray['planName'];
             }
+            if (array_key_exists('subPlanName', $planArray)) {
+                if (is_array($planArray['subPlanName'])) {
+                    $str .= " - ".implode(' & ', $planArray['subPlanName']);
+                } else {
+                    $str .= " - ".$planArray['subPlanName'];
+                }
+            }
+            $outArray[] = $str;
         }
 
-        return $str;
+        return implode(',', $outArray);
     }
     // layout use function end
 
@@ -244,14 +249,11 @@ class Quote
      * @return array downloaded Quote ID
      */
     public static function downloadQuote($t = 'a')
-    {
-        //->where_lt('create_datetime', date("Y-m-d H:i:s",strtotime("-1 day"))  )
-        
+    {   
         $manyQuoteOrm = ORM::for_table('motor_quote', 'source')->
                     where('download', 0)->
                     order_by_asc('id');
                     
-        
         if ( $t == 'a') {
             $manyQuoteOrm->where_lt('create_datetime', date("Y-m-d H:i:s",strtotime("-15 minutes"))  );
         }
@@ -372,7 +374,9 @@ class Quote
         $yellowSheetOrm->Client_Address_3 = $this->emptyNullValue(mb_convert_encoding($this->ormObjFromLocal->address3, "BIG5", "UTF-8"));
         $yellowSheetOrm->Client_Address_5 = $this->emptyNullValue(mb_convert_encoding($this->ormObjFromLocal->address4, "BIG5", "UTF-8"));
         $yellowSheetOrm->Policy_Details = $this->ormObjFromLocal->insuranceType;
+        
         $yellowSheetOrm->Sum_Insured = $this->ormObjFromLocal->sum_insured;
+        
         $yellowSheetOrm->Make = $this->ormObjFromLocal->carMake;
         $yellowSheetOrm->Model =  mb_convert_encoding($this->ormObjFromLocal->carModel, "BIG5", "UTF-8");
         $yellowSheetOrm->Year_of_Manufacture = !empty($this->ormObjFromLocal->yearManufacture) ? $this->ormObjFromLocal->yearManufacture : 2000; // default value of the database;
@@ -381,10 +385,6 @@ class Quote
         $yellowSheetOrm->Driver_One_Occupation = mb_convert_encoding(html_entity_decode($this->ormObjFromLocal->occupation), "BIG5", "UTF-8");
         
         $yellowSheetOrm->NCD = $this->ormObjFromLocal->ncd;
-        $yellowSheetOrm->quote_one_ncd = $this->ormObjFromLocal->ncd;
-        $yellowSheetOrm->quote_two_ncd = $this->ormObjFromLocal->ncd;
-        $yellowSheetOrm->quote_three_ncd = $this->ormObjFromLocal->ncd;
-        $yellowSheetOrm->quote_four_ncd = $this->ormObjFromLocal->ncd;
         
         $yellowSheetOrm->ksi_si_no = $this->ormObjFromLocal->ksi_si_no;
         $yellowSheetOrm->ys_client_no = $this->ormObjFromLocal->ys_client_no;
@@ -392,13 +392,60 @@ class Quote
         // plan info break down
         $planArray = $this->jsonDcodePlans();
         //print_r($planArray);
-        $yellowSheetOrm->Quote_One_NetP_w_Tax = $planArray['price'];
-        $yellowSheetOrm->Quote_One_Special_Offer_Premium = $planArray['totalPrice'];
-        $yellowSheetOrm->Quote_One_TPPD_Excess = $planArray['details'][1]['value'];
-        $yellowSheetOrm->Quote_One_TPPD_Unnamed_Excess = $planArray['details']['2']['value'];
-        $yellowSheetOrm->Quote_One_TPPD_Young_Excess = $planArray['details']['3']['value'];
-        $yellowSheetOrm->Quote_One_TPPD_Inexperienced_Excess = $planArray['details']['4']['value'];
-        $yellowSheetOrm->Additional_Plan = implode(',', $planArray['subPlanName']);
+        
+        $yellowSheetOrm->auto_premium  = !empty($planArray) ? 1 : 0 ;
+        
+        if ( isset($planArray[0]) ) {
+            $yellowSheetOrm->Quote_One_NCD = $this->ormObjFromLocal->ncd;
+            $yellowSheetOrm->Quote_One_Insurance_Type = $planArray[0]['TypeofInsurance'];
+            $yellowSheetOrm->Quote_One_Estimated_Value = $planArray[0]['sum_insured'];
+            $yellowSheetOrm->Quote_One_NetP_w_Tax = $planArray[0]['price'];
+            $yellowSheetOrm->Quote_One_Special_Offer_Premium = $planArray[0]['totalPrice'];
+            $yellowSheetOrm->Quote_One_TPPD_Excess = $planArray[0]['details'][1]['value'];
+            $yellowSheetOrm->Quote_One_TPPD_Unnamed_Excess = $planArray[0]['details']['2']['value'];
+            $yellowSheetOrm->Quote_One_TPPD_Young_Excess = $planArray[0]['details']['3']['value'];
+            $yellowSheetOrm->Quote_One_TPPD_Inexperienced_Excess = $planArray[0]['details']['4']['value'];
+            $yellowSheetOrm->Quote_One_General_Excess = '$' . $planArray[0]['details']['5']['value'];
+            $yellowSheetOrm->Quote_One_Unnamed_Excess = $planArray[0]['details']['6']['value'];
+            $yellowSheetOrm->Quote_One_Young_Excess = $planArray[0]['details']['7']['value'];
+            $yellowSheetOrm->Quote_One_Inexperienced_Excess = $planArray[0]['details']['8']['value'];
+            $yellowSheetOrm->Quote_One_Parking_Excess = $planArray[0]['details']['9']['value'];
+            $yellowSheetOrm->Quote_One_Theft_Excess = '$' . $planArray[0]['details']['10']['value'];
+            $yellowSheetOrm->Quote_One_Premium = $planArray[0]['premium'];
+            $yellowSheetOrm->Quote_One_Loading = $planArray[0]['loading'];
+            $yellowSheetOrm->Quote_One_Other_Discount = $planArray[0]['otherDiscount'];
+            $yellowSheetOrm->Quote_One_Client_Discount = $planArray[0]['clientDiscount'];
+            $yellowSheetOrm->Quote_One_Commission = $planArray[0]['commission'];
+            $yellowSheetOrm->Quote_One_MIB = $planArray[0]['mib'];
+            $yellowSheetOrm->Quote_One_Gross_Premium = $planArray[0]['gross'];
+            $yellowSheetOrm->Additional_Plan = implode(',', $planArray[0]['subPlanName']);
+        }
+        
+        if ( isset($planArray[1]) ) {
+            $yellowSheetOrm->Quote_Two_NCD = $this->ormObjFromLocal->ncd;
+            $yellowSheetOrm->Quote_Two_Insurance_Type = $planArray[1]['TypeofInsurance'];
+            $yellowSheetOrm->Quote_Two_Estimated_Value = $planArray[1]['sum_insured'];
+            $yellowSheetOrm->Quote_Two_NetP_w_Tax = $planArray[1]['price'];
+            $yellowSheetOrm->Quote_Two_Special_Offer_Premium = $planArray[1]['totalPrice'];
+            $yellowSheetOrm->Quote_Two_TPPD_Excess = $planArray[1]['details'][1]['value'];
+            $yellowSheetOrm->Quote_Two_TPPD_Unnamed_Excess = $planArray[1]['details']['2']['value'];
+            $yellowSheetOrm->Quote_Two_TPPD_Young_Excess = $planArray[1]['details']['3']['value'];
+            $yellowSheetOrm->Quote_Two_TPPD_Inexperienced_Excess = $planArray[1]['details']['4']['value'];
+            $yellowSheetOrm->Quote_Two_General_Excess = '$' . $planArray[1]['details']['5']['value'];
+            $yellowSheetOrm->Quote_Two_Unnamed_Excess = $planArray[1]['details']['6']['value'];
+            $yellowSheetOrm->Quote_Two_Young_Excess = $planArray[1]['details']['7']['value'];
+            $yellowSheetOrm->Quote_Two_Inexperienced_Excess = $planArray[1]['details']['8']['value'];
+            $yellowSheetOrm->Quote_Two_Parking_Excess = $planArray[1]['details']['9']['value'];
+            $yellowSheetOrm->Quote_Two_Theft_Excess = '$' . $planArray[1]['details']['10']['value'];
+            $yellowSheetOrm->Quote_Two_Premium = $planArray[1]['premium'];
+            $yellowSheetOrm->Quote_Two_Loading = $planArray[1]['loading'];
+            $yellowSheetOrm->Quote_Two_Other_Discount = $planArray[1]['otherDiscount'];
+            $yellowSheetOrm->Quote_Two_Client_Discount = $planArray[1]['clientDiscount'];
+            $yellowSheetOrm->Quote_Two_Commission = $planArray[1]['commission'];
+            $yellowSheetOrm->Quote_Two_MIB = $planArray[1]['mib'];
+            $yellowSheetOrm->Quote_Two_Gross_Premium = $planArray[1]['gross'];
+        }
+        
 
         $yellowSheetOrm->Start_Date = $this->dateFormate($this->ormObjFromLocal->policy_start_date);
         $yellowSheetOrm->Policy_End_Date = $this->dateFormate($this->ormObjFromLocal->policy_end_date);
@@ -505,28 +552,57 @@ class Quote
      */
     private function jsonDcodePlans()
     {
-        $planArray = json_decode($this->ormObjFromLocal->plan_match_json, true);
-        if (isset($planArray['details'])) {
-            $newArray = array();
-            foreach ($planArray['details'] as $vAr) {
-                $newArray[$vAr['deatils_id']] = $vAr;
+        $jsonArray = json_decode($this->ormObjFromLocal->plan_match_json, true);
+        $outArray = array();
+        foreach ( $jsonArray as $rowKey => $planArray ){
+            if (isset($planArray['details'])) {
+                $newArray = array();
+                foreach ($planArray['details'] as $vAr) {
+                    $newArray[$vAr['deatils_id']] = $vAr;
+                }
+                $planArray['details'] = $newArray;
             }
-            $planArray['details'] = $newArray;
-        }
-        // set default value array
-        $returnArray = array(
-            'planName' => '',
-            'totalPrice' => '0.00',
-            'price' => '0.00',
-            'details' => array('1' => array('value' => '0.00'),
-                            '2' => array('value' => '0.00'),
-                            '3' => array('value' => '0.00'),
-                            '4' => array('value' => '0.00'),
-                        ),
-            'subPlanName' => array(),
-        );
+            $planArray['TypeofInsurance'] = $this->typeOfInsuranceKeyToText($planArray['TypeofInsurance']);
+            $planArray['sum_insured'] = ($planArray['TypeofInsurance'] == 'Comprehensive') ? $this->ormObjFromLocal->sum_insured : '0.00';
+            // set default value array
+            $returnArray = array(
+                'planName' => '',
+                'TypeofInsurance' => '',
+                'totalPrice' => '0.00',
+                'price' => '0.00',
+                'sum_insured' => '0.00',
+                'details' => array('1' => array('value' => '0.00'),//TPPD
+                                '2' => array('value' => '0.00'),//TPPD U
+                                '3' => array('value' => '0.00'),//TPPD Y
+                                '4' => array('value' => '0.00'),//TPPD i
+                                '5' => array('value' => '0.00'),//General 
+                                '6' => array('value' => '0.00'),//Unnamed 
+                                '7' => array('value' => '0.00'),//Young 
+                                '8' => array('value' => '0.00'),//Inexp 
+                                '9' => array('value' => '0.00'),//Parking 
+                                '10' => array('value' => '0.00'),//Theft 
+                            ),
+                'subPlanName' => array(),
+                'premium' => '0.00',
+                'loading' => '0.00',
+                'otherDiscount' => '0.00',
+                'clientDiscount' => '0.00',
+                'commission' => '0.00',
+                'mib' => '0.00',
+                'gross' => '0.00',
+            );
 
-        return array_replace_recursive($returnArray, $planArray);
+            $outArray[] = array_replace_recursive($returnArray, $planArray);
+        }
+        return $outArray;
     }
     // data formate process to yellow sheet end
+    
+    
+    private function typeOfInsuranceKeyToText($key){
+        $outArray['Third_Party_Only'] = 'Third Party';
+        $outArray['Comprehensive'] = 'Comprehensive';
+        $outArray['Comprehensive_Third_Party'] = 'Third Party and Comp.';
+        return $outArray[$key];
+    }
 }

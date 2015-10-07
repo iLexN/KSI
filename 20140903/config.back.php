@@ -18,21 +18,16 @@ $sourceDbName = '';
 $sourceDbUser = '';
 $sourceDbPass = '';
 
-
 $ksiDbHost = '';
 //$ksiDbHost = '';
 $ksiDbName = '';
 $ksiDbUser = '';
 $ksiDbPass = '';
 
-
 $localDbHost ='';
 $localDbName ='';
 $localDbUser ='';
 $localDbPass ='';
-
-
-
 
 //source connection
 ORM::configure('mysql:host=' . $sourceDbHost . ';dbname=' . $sourceDbName , null, 'source');
