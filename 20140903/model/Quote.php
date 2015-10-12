@@ -336,6 +336,7 @@ class Quote
     {
         if ($sale !== 'Rubbish') {
             $this->dataToYellowSheet($sale);
+            $this->haveAdData(); // if have ad data than insert to ad table
             $this->updateLocalPushStatus(1);
         } else {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
@@ -492,6 +493,39 @@ class Quote
         $yellowSheetOrm->Cylinder_Capacity = $this->ormObjFromLocal->cylinderCapacity;
         $yellowSheetOrm->Number_of_Seats = $this->ormObjFromLocal->numberOfSeats;
 
+        $yellowSheetOrm->save();
+    }
+    
+    private function haveAdData(){
+        if ( 
+                !empty($this->ormObjFromLocal->cmid) ||
+                !empty($this->ormObjFromLocal->dgid) ||
+                !empty($this->ormObjFromLocal->kwid) ||
+                !empty($this->ormObjFromLocal->netw) ||
+                !empty($this->ormObjFromLocal->dvce) ||
+                !empty($this->ormObjFromLocal->crtv) ||
+                !empty($this->ormObjFromLocal->adps) 
+            ) {
+            $this->adDataToYellowSheet();
+        }
+        return;
+        
+    }
+    
+    private function adDataToYellowSheet(){
+        $yellowSheetOrm = ORM::for_table('sales_inte_online_inquiries', 'ksi')->create();
+        $yellowSheetOrm->Online_Ref_No = $this->ormObjFromLocal->id;
+        $yellowSheetOrm->keywords = $this->ormObjFromLocal->keywords;
+        $yellowSheetOrm->cmid = $this->ormObjFromLocal->cmid;
+        $yellowSheetOrm->dgid = $this->ormObjFromLocal->dgid;
+        $yellowSheetOrm->kwid = $this->ormObjFromLocal->kwid;
+        $yellowSheetOrm->netw = $this->ormObjFromLocal->netw;
+        $yellowSheetOrm->dvce = $this->ormObjFromLocal->dvce;
+        $yellowSheetOrm->crtv = $this->ormObjFromLocal->crtv;
+        $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
+        
+        //echo($this->ormObjFromLocal->adps);
+        
         $yellowSheetOrm->save();
     }
 
