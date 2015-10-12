@@ -149,7 +149,9 @@ $app->get('/compare/:id',$authenticate($app) , function($id) use ($app){
 
 
 $app->get('/adlog', function() use ($app){
-    
+    /**
+     * @todo need process
+     */
     $adArray = \Ksi\AdLog::adLogList();
     
     print_r($adArray);
