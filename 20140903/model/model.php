@@ -4,3 +4,4 @@
  */
 include('User.php');
 include('Quote.php');
+include('AdLog.php');

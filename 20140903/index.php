@@ -148,6 +148,14 @@ $app->get('/compare/:id',$authenticate($app) , function($id) use ($app){
 });
 
 
+$app->get('/adlog', function() use ($app){
+    
+    $adArray = \Ksi\AdLog::adLogList();
+    
+    print_r($adArray);
+    
+});
+
 //assets 
 $app->get('/js/:js',function($js) use ($app) {
     $app->response->headers->set('Content-Type', 'application/javascript;charset=utf-8 ');
