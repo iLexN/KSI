@@ -19,7 +19,7 @@ class AdLog
     }
 
     /**
-     * Find the sales list from KSI , order by asc
+     * Find motor google adwords logs
      *
      * @return array
      */
@@ -29,6 +29,4 @@ class AdLog
                 ->find_array();
         return $adLog;
     }
-    
-    
 }

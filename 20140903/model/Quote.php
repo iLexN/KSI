@@ -113,9 +113,9 @@ class Quote
      *
      * @return string Yes/No
      */
-    public function isPayButtonClick(){
-        
-        if( $this->ormObjFromLocal->payButtonClick == 1 ){
+    public function isPayButtonClick()
+    {
+        if ($this->ormObjFromLocal->payButtonClick == 1) {
             return 'Yes';
         }
         return ;
@@ -126,8 +126,9 @@ class Quote
      *
      * @return string <a>OldRef</a>
      */
-    public function hasOldRefID(){
-        if ( $this->ormObjFromLocal->oldRefID != 0 ) {
+    public function hasOldRefID()
+    {
+        if ($this->ormObjFromLocal->oldRefID != 0) {
             return '<a href="compare/'.$this->ormObjFromLocal->id.'" class="oldrefid">'.$this->ormObjFromLocal->oldRefID . '</a>';
         }
         return '';
@@ -164,7 +165,7 @@ class Quote
         
         $outArray = array();
 
-        foreach ( $jsonArray as $planArray  ) {
+        foreach ($jsonArray as $planArray) {
             $str = '';
             if (array_key_exists('planName', $planArray)) {
                 $str .=  $planArray['planName'];
@@ -249,13 +250,13 @@ class Quote
      * @return array downloaded Quote ID
      */
     public static function downloadQuote($t = 'a')
-    {   
+    {
         $manyQuoteOrm = ORM::for_table('motor_quote', 'source')->
                     where('download', 0)->
                     order_by_asc('id');
                     
-        if ( $t == 'a') {
-            $manyQuoteOrm->where_lt('create_datetime', date("Y-m-d H:i:s",strtotime("-15 minutes"))  );
+        if ($t == 'a') {
+            $manyQuoteOrm->where_lt('create_datetime', date("Y-m-d H:i:s", strtotime("-15 minutes")));
         }
         
         $manyQuote = $manyQuoteOrm->find_many();
@@ -393,10 +394,10 @@ class Quote
         // plan info break down
         $planArray = $this->jsonDcodePlans();
         //print_r($planArray);
-        
+
         $yellowSheetOrm->auto_premium  = !empty($planArray) ? 1 : 0 ;
         
-        if ( isset($planArray[0]) ) {
+        if (isset($planArray[0])) {
             $yellowSheetOrm->Quote_One_NCD = $this->ormObjFromLocal->ncd;
             $yellowSheetOrm->Quote_One_Insurance_Type = $planArray[0]['TypeofInsurance'];
             $yellowSheetOrm->Quote_One_Estimated_Value = $planArray[0]['sum_insured'];
@@ -422,7 +423,7 @@ class Quote
             $yellowSheetOrm->Additional_Plan = implode(',', $planArray[0]['subPlanName']);
         }
         
-        if ( isset($planArray[1]) ) {
+        if (isset($planArray[1])) {
             $yellowSheetOrm->Quote_Two_NCD = $this->ormObjFromLocal->ncd;
             $yellowSheetOrm->Quote_Two_Insurance_Type = $planArray[1]['TypeofInsurance'];
             $yellowSheetOrm->Quote_Two_Estimated_Value = $planArray[1]['sum_insured'];
@@ -496,23 +497,24 @@ class Quote
         $yellowSheetOrm->save();
     }
     
-    private function haveAdData(){
-        if ( 
+    private function haveAdData()
+    {
+        if (
                 !empty($this->ormObjFromLocal->cmid) ||
                 !empty($this->ormObjFromLocal->dgid) ||
                 !empty($this->ormObjFromLocal->kwid) ||
                 !empty($this->ormObjFromLocal->netw) ||
                 !empty($this->ormObjFromLocal->dvce) ||
                 !empty($this->ormObjFromLocal->crtv) ||
-                !empty($this->ormObjFromLocal->adps) 
+                !empty($this->ormObjFromLocal->adps)
             ) {
             $this->adDataToYellowSheet();
         }
         return;
-        
     }
     
-    private function adDataToYellowSheet(){
+    private function adDataToYellowSheet()
+    {
         $yellowSheetOrm = ORM::for_table('sales_inte_online_inquiries', 'ksi')->create();
         $yellowSheetOrm->Online_Ref_No = $this->ormObjFromLocal->id;
         $yellowSheetOrm->keywords = $this->ormObjFromLocal->keywords;
@@ -525,7 +527,7 @@ class Quote
         $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
         
         //echo($this->ormObjFromLocal->adps);
-        
+
         $yellowSheetOrm->save();
     }
 
@@ -588,7 +590,7 @@ class Quote
     {
         $jsonArray = json_decode($this->ormObjFromLocal->plan_match_json, true);
         $outArray = array();
-        foreach ( $jsonArray as $rowKey => $planArray ){
+        foreach ($jsonArray as $rowKey => $planArray) {
             if (isset($planArray['details'])) {
                 $newArray = array();
                 foreach ($planArray['details'] as $vAr) {
@@ -631,9 +633,10 @@ class Quote
         return $outArray;
     }
     // data formate process to yellow sheet end
+
     
-    
-    private function typeOfInsuranceKeyToText($key){
+    private function typeOfInsuranceKeyToText($key)
+    {
         $outArray['Third_Party_Only'] = 'Third Party';
         $outArray['Comprehensive'] = 'Comprehensive';
         $outArray['Comprehensive_Third_Party'] = 'Third Party and Comp.';
