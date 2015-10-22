@@ -173,7 +173,7 @@ $app->get('/js/:js',function($js) use ($app) {
 })->name('js');
 
 $app->get('/css/:css',function($css) use ($app) {
-    $app->response->headers->set('Content-Type', 'text/css;charset=utf-8 ');
+    $app->response->headers->set('Content-Type', 'text/css;charset=utf-8');
     $file = 'assets/css/' . $css;
     $app->lastModified( filemtime( $file )  );
 
