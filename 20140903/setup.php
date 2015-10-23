@@ -8,7 +8,7 @@ $logger = new \Flynsarmy\SlimMonolog\Log\MonologWriter(array(
         new \Monolog\Handler\StreamHandler('./logs/'.date('Y-m-d').'.log')
     ),
     'processors' => array(
-	new \Monolog\Processor\WebProcessor
+        new \Monolog\Processor\WebProcessor
     )
 ));
 

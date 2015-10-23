@@ -15,13 +15,10 @@ include 'lib/array_column.php';
 
 $t = (isset($_GET['t']) && !empty($_GET['t']))  ? $_GET['t'] : false;
 
-if ( $t == 'm') {
+if ($t == 'm') {
     $allQuote = Ksi\Quote::downloadQuote('m');
-} else { 
+} else {
     $allQuote = Ksi\Quote::downloadQuote();
 }
 
-echo( date("Y-m-d H:i:s") . " : " . implode(',', $allQuote) ) . "\n";
-
-
-
+echo(date("Y-m-d H:i:s") . " : " . implode(',', $allQuote)) . "\n";
