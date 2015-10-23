@@ -5,11 +5,13 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
-require_once 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
+$autoloader = require  'vendor/autoload.php';
 
 include 'config.php';
 include 'setup.php';
-include 'model/model.php';
+//include 'model/model.php';
+$autoloader->addPsr4('Ksi\\', __DIR__ . '/model');
 
 //middleware start
 $authenticate = function ($app) {
@@ -56,7 +58,7 @@ $app->get('/list', $authenticate($app) ,function() use ($app) {
                 'numberListedQuote'=>$numberListedQuote,
                 'quoteAr'=>$quoteAr,
                 'salesList'=>$salesList,
-                'lastUpdateDateTime'=>date( "Y-m-d H:i",filemtime( 'download_log/'. date("Ymd") . '.logs' ) )
+                //'lastUpdateDateTime'=>date( "Y-m-d H:i",filemtime( 'download_log/'. date("Ymd") . '.logs' ) )
 	));
     
     $app->render('list.html.twig');
