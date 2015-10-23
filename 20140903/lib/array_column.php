@@ -81,7 +81,6 @@ if (!function_exists('array_column')) {
         $resultArray = array();
 
         foreach ($paramsInput as $row) {
-
             $key = $value = null;
             $keySet = $valueSet = false;
 
@@ -105,10 +104,8 @@ if (!function_exists('array_column')) {
                     $resultArray[] = $value;
                 }
             }
-
         }
 
         return $resultArray;
     }
-
 }
