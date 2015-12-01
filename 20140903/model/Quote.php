@@ -347,7 +347,7 @@ class Quote
     /**
      * prog flow for pushing.
      *
-     * @param int $s 0 default for pending, 1 for pushed, 2 for Rubbish
+     * @param int $s 0 default for watting action, 1 for pushed, 2 for Rubbish
      */
     private function updateLocalPushStatus($s)
     {
@@ -367,6 +367,7 @@ class Quote
         $yellowSheetOrm->Responsibility_Name = $sale;
         $yellowSheetOrm->Date_of_Contact = date('Y-m-d');
         $yellowSheetOrm->Ownership = $this->ormObjFromLocal->referer;
+        $yellowSheetOrm->client_language  = $this->ormObjFromLocal->lang ;
         $yellowSheetOrm->First_Name = mb_convert_encoding($this->ormObjFromLocal->name, "BIG5", "UTF-8");
         $yellowSheetOrm->Mobile = $this->ormObjFromLocal->contactno;
         $yellowSheetOrm->Email = $this->ormObjFromLocal->email;
