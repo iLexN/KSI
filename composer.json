@@ -1,6 +1,6 @@
 {
         "require" : {
-                "j4mie/paris": "v1.5.3",
+                "j4mie/paris": "v1.5.4",
                 "j4mie/idiorm": "v1.5.1",
                 "slim/slim": "^3.0@RC",
                 "slim/twig-view": "2.0",
