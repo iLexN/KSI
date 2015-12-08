@@ -10,63 +10,75 @@ $autoloader = require  'vendor/autoload.php';
 
 include 'config.php';
 include 'setup.php';
-//include 'model/model.php';
+
 $autoloader->addPsr4('Ksi\\', __DIR__ . '/model');
 
 //middleware start
-$authenticate = function ($app) {
-    return function () use ($app) {
-        if (!isset($_SESSION['login'])) {
-            $app->flash('loginError', 'Login required');
-            $app->redirect($app->urlFor('home'));
-        }
-    };
+$authenticate = function ($request, $response, $next) {
+    if (!isset($_SESSION['login'])) {
+        $this->flash->addMessage('loginError', 'Login required');
+        return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
+    }
+    $response = $next($request, $response);
+
+    return $response;
 };
 // middleware end
 
 
-$app->get('/', function () use ($app) {
-    $app->render('login.html.twig');
-})->name('home');
+$app->get('/', function ($req,   $res, $args = []) {
+    return $this->view->render($res, 'login.html.twig', 
+                ['flash'=>$this->flash->getMessages()]
+            );
+})->setName('home');
 
 
-$app->post('/', function () use ($app) {
-    if (Ksi\User::validateLogin($app->request()->post('login'), $app->request()->post('pwd'))) {
+$app->post('/', function ($req,   $res, $args = []) {
+    
+    //$login = $req->getParsedBody()['login'];
+    //$pwd = $req->getParsedBody()['pwd'];
+    
+    if (Ksi\User::validateLogin($req->getParsedBody()['login'], $req->getParsedBody()['pwd'])) {
         $_SESSION['login'] = true;
-        $app->redirect($app->urlFor('list'));
+        return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('list'));
     } else {
-        $app->flash('loginError', 'Login Error, please check username and password');
-        $app->redirect($app->urlFor('home'));
+        $this->flash->addMessage('loginError', 'Login Error, please check username and password');
+        return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
     }
 });
 
-$app->get('/logout', function () use ($app) {
+$app->get('/logout', function ($req,   $res, $args = []) {
     unset($_SESSION['login']);
-    $app->flash('loginError', 'You are Logout');
-    $app->redirect($app->urlFor('home'));
-})->name('logout');
+    $this->flash->addMessage('loginError', 'You are Logout');
+    return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
+})->setName('logout');
 
 
 
-$app->get('/list', $authenticate($app), function () use ($app) {
+$app->get('/list', function ($req,   $res, $args = []) {
     
     $salesList = \Ksi\User::salesList();
     list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\Quote::outstandingQuote();
 
-    $app->view->appendData(array(
+    $data = array(
         'totalQuote'=>$totalQuote,
                 'numberListedQuote'=>$numberListedQuote,
                 'quoteAr'=>$quoteAr,
                 'salesList'=>$salesList,
-                'lastUpdateDateTime'=>date("Y-m-d H:i", filemtime('download_log/'. date("Ymd") . '.logs'))
-    ));
+                'flash'=>$this->flash->getMessages(),
+                //'lastUpdateDateTime'=>date("Y-m-d H:i", filemtime('download_log/'. date("Ymd") . '.logs'))
+    );
     
-    $app->render('list.html.twig');
+    //$app->render('list.html.twig');
+    return $this->view->render($res, 'list.html.twig', 
+                $data
+            );
     
-})->name('list');
+})->add($authenticate)->setName('list');
 
-$app->post('/pass', $authenticate($app), function () use ($app) {
-    $allPostVars = $app->request->post();
+$app->post('/pass', function ($req,   $res, $args = []) {
+    //$allPostVars = $app->request->post();
+    $allPostVars = $req->getParsedBody();
     
     $emailArray = array();
     if (isset($allPostVars['pass']['all'])  && $allPostVars['pass']['all'] === 'Pass All') {
@@ -87,19 +99,26 @@ $app->post('/pass', $authenticate($app), function () use ($app) {
     }
     
     if (count($emailArray) === 0) {
-        $app->flash('quoteError', 'Please select sale to Pass');
-        $app->redirect($app->urlFor('list'));
+        //$app->flash('quoteError', 'Please select sale to Pass');
+        //$app->redirect($app->urlFor('list'));
+        $this->flash->addMessage('quoteError', 'Please select sale to Pass');
+        return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('list'));
     }
     
-    $app->view->appendData(array('emailArray'=>$emailArray));
-    $app->render('pass.html.twig');
-})->name('pass');
+    //$app->view->appendData(array('emailArray'=>$emailArray));
+    //$app->render('pass.html.twig');
+    
+    return $this->view->render($res, 'pass.html.twig', 
+                array('emailArray'=>$emailArray)
+            );
+    
+})->add($authenticate)->setName('pass');
 
 
-$app->get('/compare/:id', $authenticate($app), function ($id) use ($app) {
+$app->get('/compare/{id}', function ($req,   $res, $args = []) {
     
     $newQuote = ORM::for_table('motor_quote', 'local')->
-                    where('id', $id)->
+                    where('id', $args['id'])->
                     find_one();
     
     $oldQuote = ORM::for_table('motor_quote', 'local')->
@@ -161,10 +180,10 @@ $app->get('/compare/:id', $authenticate($app), function ($id) use ($app) {
     }
     echo('</table>');
     
-});
+})->add($authenticate);
 
 
-$app->get('/adlog', function () use ($app) {
+$app->get('/adlog', function ($req,   $res, $args = []) {
     /**
      * @todo need process
      */
@@ -175,23 +194,27 @@ $app->get('/adlog', function () use ($app) {
 });
 
 //assets 
-$app->get('/js/:js', function ($js) use ($app) {
-    $app->response->headers->set('Content-Type', 'application/javascript;charset=utf-8 ');
-    $file = 'assets/js/' . $js;
-    $app->lastModified(filemtime($file));
+$app->get('/js/{js}', function ($req,   $res, $args = []) {
+    //$app->response->headers->set('Content-Type', 'application/javascript;charset=utf-8 ');
+    $file = 'assets/js/' . $args['js'];
+    //$app->lastModified(filemtime($file));
 
     $out = new Assetic\Asset\AssetCollection(array(
         new Assetic\Asset\FileAsset($file)
     ), array(
         new Assetic\Filter\JSMinFilter(),
     ));
-    print $out->dump();
-})->name('js');
+    //print $out->dump();
+    
+    return $res->write($out->dump())
+                ->withHeader('Content-type', 'application/javascript;charset=utf-8');
+    
+})->setName('js');
 
-$app->get('/css/:css', function ($css) use ($app) {
-    $app->response->headers->set('Content-Type', 'text/css;charset=utf-8');
-    $file = 'assets/css/' . $css;
-    $app->lastModified(filemtime($file));
+$app->get('/css/{css}', function ($req,   $res, $args = []) {
+    //$app->response->headers->set('Content-Type', 'text/css;charset=utf-8');
+    $file = 'assets/css/' . $args['css'];
+    //$app->lastModified(filemtime($file));
 
     require('lib/cssmin-v3.0.1.php');
 
@@ -200,15 +223,12 @@ $app->get('/css/:css', function ($css) use ($app) {
         ), array(
             new Assetic\Filter\CssMinFilter()
         ));
-        print $out->dump();
-})->name('css');
+        //print $out->dump();
+        
+        return $res->write($out->dump())
+                ->withHeader('Content-type', 'text/css;charset=utf-8');
+        
+})->setName('css');
 
-
-$app->get('/tcss/css.css', function () use ($app) {
-    $app->response->headers->set('Content-Type', 'text/css;charset=utf-8 ');
-    $file = 'assets/css/css.css';
-    $app->lastModified(filemtime($file));
-    echo(csscrush_string(file_get_contents($file)));
-});
 
 $app->run();

@@ -4,11 +4,13 @@
  * For crontab use
  * becare the user/group permissions
  */
-require_once 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
+$autoloader = require  'vendor/autoload.php';
+$autoloader->addPsr4('Ksi\\', __DIR__ . '/model');
 
 include 'config.php';
-include 'model/model.php';
-include 'lib/array_column.php';
+//include 'model/model.php';
+//include 'lib/array_column.php';
 
 
 /* @var $allQuote array->object */

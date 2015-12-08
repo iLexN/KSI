@@ -1,31 +1,59 @@
 <?php
 
-$app = new \Slim\Slim();
+$settings =  [
+    'settings' => [
+        // View settings
+        'view' => [
+            'template_path' => __DIR__ . '/template',
+            'twig' => [
+                'cache' =>  __DIR__ . '/cache',
+                'debug' => true,
+                'auto_reload' => true,
+            ],
+        ],
+        // monolog settings
+        'logger' => [
+            'name' => 'app',
+            'path' => __DIR__ . '/logs/'.date("Y-m-d").'.log',
+        ],
+        'displayErrorDetails' => TRUE,
+    ],
+];
 
-//setup logger
-$logger = new \Flynsarmy\SlimMonolog\Log\MonologWriter(array(
-    'handlers' => array(
-        new \Monolog\Handler\StreamHandler('./logs/'.date('Y-m-d').'.log')
-    ),
-    'processors' => array(
-        new \Monolog\Processor\WebProcessor
-    )
-));
+$app = new \Slim\App($settings);
 
-// config Slim
-$app->config(array(
-    'debug' => true,
-    'templates.path' => 'template',
-    'view' => new \Slim\Views\Twig(),
-    'log.writer' => $logger
-));
+$container = $app->getContainer();
 
-//setup view
-$view = $app->view();
-$view->parserOptions = array(
-    'debug' => true,
-    'cache' => dirname(__FILE__) . '/cache'
-);
-$view->parserExtensions = array(
-    new \Slim\Views\TwigExtension()
-);
+// -----------------------------------------------------------------------------
+// Service providers
+// -----------------------------------------------------------------------------
+
+// Twig
+$container['view'] = function ($c) {
+    $settings = $c->get('settings');
+    $view = new \Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
+    // Add extensions
+    $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
+    $view->addExtension(new Twig_Extension_Debug());
+    return $view;
+};
+
+
+// Flash messages
+$container['flash'] = function () {
+    return new \Slim\Flash\Messages;
+};
+
+
+// -----------------------------------------------------------------------------
+// Service factories
+// -----------------------------------------------------------------------------
+// monolog
+$container['logger'] = function ($c) {
+    $settings = $c->get('settings');
+    $logger = new \Monolog\Logger($settings['logger']['name']);
+    //$logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+    $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['logger']['path'], \Monolog\Logger::DEBUG));
+    //$logger->pushHandler(new \Monolog\Handler\BrowserConsoleHandler());
+    return $logger;
+};

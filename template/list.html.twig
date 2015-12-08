@@ -4,17 +4,17 @@
     
     <div class="divAlignCenter listPage">
         
-        {% if flash.quoteError is not empty %}
-            <p class="error">{{ flash.quoteError  }}</p>
+        {% if flash.quoteError.0 is not empty %}
+            <p class="error">{{ flash.quoteError.0  }}</p>
         {% endif %}
         
         <header class="listHeader">
-            <a href="{{ urlFor('logout') }}" class="logoutBtn">Logout</a>
+            <a href="{{ path_for('logout') }}" class="logoutBtn">Logout</a>
             <a href="download" class="jsDownloadBtn logoutBtn">Download</a>
             <h1>List of Quotation <span>Total : {{ numberListedQuote }} / {{ totalQuote }} @ {{ lastUpdateDateTime }}</span></h1>
         </header>
         
-        <form action="{{ urlFor('pass') }}" method="POST">
+        <form action="{{ path_for('pass') }}" method="POST">
         <table cellpadding="0" cellspacing="0" border="0" class="listTable">
             <tr class="listTdTitle">
                 <td>Name</td>

@@ -5,7 +5,7 @@
     <div class="divAlignCenter loginBox">
         
         {% if flash.loginError is not empty %}
-        <p class="error">{{ flash.loginError  }}</p>
+        <p class="error">{{ flash.loginError.0  }}</p>
         {% endif %}
 
         <form action="" method="POST">
