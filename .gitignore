@@ -6,3 +6,10 @@
 /20140903/logs/
 /20140903/config.php
 /20140903/error_log
+/download_log/
+/logs/
+/config.php
+/error_log
+/vendor/
+/note.txt
+/composer.lock

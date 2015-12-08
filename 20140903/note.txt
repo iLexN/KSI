@@ -1,8 +1,0 @@
-*/5 * * * * php /home/alex/newksi/download.php >> /home/alex/newksi/download_log/$(date +\%Y\%m\%d).logs
-
-
-SELECT  `Sales_Intelligence_Number` ,  `Mobile` ,  `Home_Phone` ,  `Bus_Phone` ,  `Email` ,  `ksi_si_no` ,  `ys_client_no` 
-FROM  `sales_intelligence` 
-WHERE 1 
-ORDER BY  `sales_intelligence`.`Sales_Intelligence_Number` DESC 
-LIMIT 0 , 30
