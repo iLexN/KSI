@@ -35,9 +35,6 @@ $app->get('/', function ($req,   $res, $args = []) {
 
 $app->post('/', function ($req,   $res, $args = []) {
     
-    //$login = $req->getParsedBody()['login'];
-    //$pwd = $req->getParsedBody()['pwd'];
-    
     if (Ksi\User::validateLogin($req->getParsedBody()['login'], $req->getParsedBody()['pwd'])) {
         $_SESSION['login'] = true;
         return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('list'));
@@ -77,7 +74,7 @@ $app->get('/list', function ($req,   $res, $args = []) {
 })->add($authenticate)->setName('list');
 
 $app->post('/pass', function ($req,   $res, $args = []) {
-    //$allPostVars = $app->request->post();
+    
     $allPostVars = $req->getParsedBody();
     
     $emailArray = array();
@@ -92,21 +89,14 @@ $app->post('/pass', function ($req,   $res, $args = []) {
         $oneQuote = $allPostVars['quote'][$processID[0]];
         if (!empty($oneQuote['sale'])) {
             $emailArray = array( \Ksi\Quote::pushOneQuote($oneQuote) );
-        } /*else {
-            $app->flash('quoteError','Please select sale to Pass');
-            $app->redirect($app->urlFor('list'));
-        }*/
+        }
     }
     
     if (count($emailArray) === 0) {
-        //$app->flash('quoteError', 'Please select sale to Pass');
-        //$app->redirect($app->urlFor('list'));
         $this->flash->addMessage('quoteError', 'Please select sale to Pass');
         return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('list'));
     }
     
-    //$app->view->appendData(array('emailArray'=>$emailArray));
-    //$app->render('pass.html.twig');
     
     return $this->view->render($res, 'pass.html.twig', 
                 array('emailArray'=>$emailArray)
@@ -195,8 +185,9 @@ $app->get('/adlog', function ($req,   $res, $args = []) {
 
 //assets 
 $app->get('/js/{js}', function ($req,   $res, $args = []) {
-    //$app->response->headers->set('Content-Type', 'application/javascript;charset=utf-8 ');
+    
     $file = 'assets/js/' . $args['js'];
+    //@todo add http cache
     //$app->lastModified(filemtime($file));
 
     $out = new Assetic\Asset\AssetCollection(array(
@@ -212,8 +203,9 @@ $app->get('/js/{js}', function ($req,   $res, $args = []) {
 })->setName('js');
 
 $app->get('/css/{css}', function ($req,   $res, $args = []) {
-    //$app->response->headers->set('Content-Type', 'text/css;charset=utf-8');
+    
     $file = 'assets/css/' . $args['css'];
+    //@todo add http cache
     //$app->lastModified(filemtime($file));
 
     require('lib/cssmin-v3.0.1.php');
