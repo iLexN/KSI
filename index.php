@@ -17,7 +17,7 @@ $autoloader->addPsr4('Ksi\\', __DIR__ . '/model');
 $authenticate = function ($request, $response, $next) {
     if (!isset($_SESSION['login'])) {
         $this->flash->addMessage('loginError', 'Login required');
-        return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
+        return $response->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
     }
     $response = $next($request, $response);
 
