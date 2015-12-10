@@ -77,6 +77,18 @@ class Quote
     private function updateSourceDownload()
     {
         $this->ormObjFromSource->download = 1;
+        
+        $this->ormObjFromSource->hkid_1 = '';
+        $this->ormObjFromSource->hkid_2 = '';
+        $this->ormObjFromSource->hkid_3 = '';
+        
+        $this->ormObjFromSource->hkid_1_2 = '';
+        $this->ormObjFromSource->hkid_2_2 = '';
+        $this->ormObjFromSource->hkid_3_2 = '';
+        
+        $this->ormObjFromSource->dob = '';
+        $this->ormObjFromSource->dob2 = '';
+        
         $this->ormObjFromSource->save();
     }
 
