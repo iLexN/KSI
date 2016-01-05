@@ -97,7 +97,7 @@ class Quote
      * findYellowSheetDuplicate()
      * $this->ormObjFromLocal->save();.
      */
-    private function findDuplicate()
+    public function findDuplicate()
     {
         $this->findKsiDuplicate();
         $this->findYellowSheetDuplicate();
