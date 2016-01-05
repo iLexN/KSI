@@ -617,15 +617,15 @@ class Quote
                 'price'           => '0.00',
                 'sum_insured'     => '0.00',
                 'details'         => [
-                                        '1' => ['value' => '0.00'], //TPPD
-                                        '2' => ['value' => '0.00'], //TPPD U
-                                        '3' => ['value' => '0.00'], //TPPD Y
-                                        '4' => ['value' => '0.00'], //TPPD i
-                                        '5' => ['value' => '0.00'], //General
-                                        '6' => ['value' => '0.00'], //Unnamed
-                                        '7' => ['value' => '0.00'], //Young
-                                        '8' => ['value' => '0.00'], //Inexp
-                                        '9' => ['value' => '0.00'], //Parking
+                                        '1'  => ['value' => '0.00'], //TPPD
+                                        '2'  => ['value' => '0.00'], //TPPD U
+                                        '3'  => ['value' => '0.00'], //TPPD Y
+                                        '4'  => ['value' => '0.00'], //TPPD i
+                                        '5'  => ['value' => '0.00'], //General
+                                        '6'  => ['value' => '0.00'], //Unnamed
+                                        '7'  => ['value' => '0.00'], //Young
+                                        '8'  => ['value' => '0.00'], //Inexp
+                                        '9'  => ['value' => '0.00'], //Parking
                                         '10' => ['value' => '0.00'], //Theft
                                      ],
                 'subPlanName'    => [],
