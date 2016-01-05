@@ -53,7 +53,6 @@ class User
                     where('PWD', $pass)->
                     find_one();
         if ($user) {
-            //return $user;
             return true;
         } else {
             return false;

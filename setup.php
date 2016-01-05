@@ -1,4 +1,5 @@
 <?php
+use Interop\Container\ContainerInterface;
 
 $settings =  [
     'settings' => [
@@ -29,7 +30,7 @@ $container = $app->getContainer();
 // -----------------------------------------------------------------------------
 
 // Twig
-$container['view'] = function ($c) {
+$container['view'] = function (ContainerInterface $c) {
     $settings = $c->get('settings');
     $view = new \Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
     // Add extensions
@@ -49,11 +50,9 @@ $container['flash'] = function () {
 // Service factories
 // -----------------------------------------------------------------------------
 // monolog
-$container['logger'] = function ($c) {
+$container['logger'] = function (ContainerInterface $c) {
     $settings = $c->get('settings');
     $logger = new \Monolog\Logger($settings['logger']['name']);
-    //$logger->pushProcessor(new \Monolog\Processor\UidProcessor());
     $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['logger']['path'], \Monolog\Logger::DEBUG));
-    //$logger->pushHandler(new \Monolog\Handler\BrowserConsoleHandler());
     return $logger;
 };

@@ -6,12 +6,6 @@
  */
 
 //db config
-/*
-$sourceDbHost = '10.0.2.10';
-$sourceDbName = 'ks-car2';
-$sourceDbUser = 'alex';
-$sourceDbPass = '329805';
-*/
 
 $sourceDbHost = '';
 $sourceDbName = '';
@@ -19,7 +13,6 @@ $sourceDbUser = '';
 $sourceDbPass = '';
 
 $ksiDbHost = '';
-//$ksiDbHost = '';
 $ksiDbName = '';
 $ksiDbUser = '';
 $ksiDbPass = '';
@@ -51,9 +44,9 @@ ORM::configure('return_result_sets', true, 'ksi');
 ORM::configure('caching', true, 'ksi');
 ORM::configure('caching_auto_clear', true, 'ksi'); // automatically clear it on save
 ORM::configure('logging', false,  'ksi');
-//ORM::configure('logger', function($log_string, $query_time) {
-//   echo $log_string . ' in ' . $query_time . '<br/>';
-//}, 'ksi');
+ORM::configure('logger', function($log_string, $query_time) {
+   echo $log_string . ' in ' . $query_time . '<br/>';
+}, 'ksi');
 
 
 //localhost connection
@@ -65,7 +58,7 @@ ORM::configure('return_result_sets', true, 'local');
 ORM::configure('caching', true, 'local');
 ORM::configure('caching_auto_clear', true, 'local'); // automatically clear it on save
 ORM::configure('logging', false,  'local');
-//ORM::configure('logger', function($log_string, $query_time) {
-//    echo $log_string . ' in ' . $query_time . '<br/>';
-//}, 'local');
+ORM::configure('logger', function($log_string, $query_time) {
+    echo $log_string . ' in ' . $query_time . '<br/>';
+}, 'local');
 

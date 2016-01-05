@@ -47,7 +47,6 @@ class Quote
         $this->ormObjFromSource = $ormQuote;
         $this->saveDownload();
         $this->updateSourceDownload();
-        //$this->findDuplicate();
     }
 
     /**
@@ -406,7 +405,6 @@ class Quote
 
         // plan info break down
         $planArray = $this->jsonDcodePlans();
-        //print_r($planArray);
 
         $yellowSheetOrm->auto_premium  = !empty($planArray) ? 1 : 0 ;
         
@@ -472,7 +470,6 @@ class Quote
         $yellowSheetOrm->Marital_Status = $this->ormObjFromLocal->marital_status;
         $yellowSheetOrm->DOB = $this->dateFormate($this->ormObjFromLocal->dob);
         
-        //$yellowSheetOrm->Vehicle_Registration = $this->ormObjFromLocal->vehicle_registration;
         $yellowSheetOrm->Vehicle_Registration = mb_convert_encoding($this->ormObjFromLocal->vehicle_registration, "BIG5", "UTF-8");
         
         $yellowSheetOrm->Yearly_Mileage = $this->ormObjFromLocal->yearly_mileage;
@@ -495,7 +492,6 @@ class Quote
         $yellowSheetOrm->Driver_Two_Gender = (!empty($this->ormObjFromLocal->gender2)) ? strtoupper($this->ormObjFromLocal->gender2[0]) : '';
         $yellowSheetOrm->Driver_Two_HKID = $this->hkidFormate($this->ormObjFromLocal->hkid_1_2, $this->ormObjFromLocal->hkid_2_2, $this->ormObjFromLocal->hkid_3_2);
         $yellowSheetOrm->Driver_Two_Marital_Status = $this->ormObjFromLocal->marital_status2;
-        //$yellowSheetOrm->Driver_Two_Residential_District = $this->ormObjFromLocal->residential_district2;
         $yellowSheetOrm->Driver_Two_Drive_Offence_Point = $this->ormObjFromLocal->drive_offence_point2;
         $yellowSheetOrm->Driver_Two_Motor_Accident_Yrs = $this->ormObjFromLocal->motor_accident_yrs2;
 
@@ -538,8 +534,6 @@ class Quote
         $yellowSheetOrm->dvce = $this->ormObjFromLocal->dvce;
         $yellowSheetOrm->crtv = $this->ormObjFromLocal->crtv;
         $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
-        
-        //echo($this->ormObjFromLocal->adps);
 
         $yellowSheetOrm->save();
     }
