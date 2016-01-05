@@ -16,7 +16,7 @@ include 'setup.php';
 $autoloader->addPsr4('Ksi\\', __DIR__ . '/model');
 
 //middleware start
-$authenticate = function (ServerRequestInterface $request, $response, $next) {
+$authenticate = function (ServerRequestInterface $request,ResponseInterface $response, $next) {
     if (!isset($_SESSION['login'])) {
         $this->flash->addMessage('loginError', 'Login required');
         return $response->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
@@ -28,14 +28,14 @@ $authenticate = function (ServerRequestInterface $request, $response, $next) {
 // middleware end
 
 
-$app->get('/', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/', function (ServerRequestInterface $req,  ResponseInterface $res, $args = []) {
     return $this->view->render($res, 'login.html.twig', 
                 ['flash'=>$this->flash->getMessages()]
             );
 })->setName('home');
 
 
-$app->post('/', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->post('/', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     if (Ksi\User::validateLogin($req->getParsedBody()['login'], $req->getParsedBody()['pwd'])) {
         $_SESSION['login'] = true;
@@ -46,7 +46,7 @@ $app->post('/', function (ServerRequestInterface $req,   $res, $args = []) {
     }
 });
 
-$app->get('/logout', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/logout', function (ServerRequestInterface $req,  ResponseInterface $res, $args = []) {
     unset($_SESSION['login']);
     $this->flash->addMessage('loginError', 'You are Logout');
     return $res->withStatus(301)->withHeader("Location", $this->router->pathFor('home'));
@@ -54,7 +54,7 @@ $app->get('/logout', function (ServerRequestInterface $req,   $res, $args = []) 
 
 
 
-$app->get('/list', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/list', function (ServerRequestInterface $req,  ResponseInterface $res, $args = []) {
     
     $salesList = \Ksi\User::salesList();
     list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\Quote::outstandingQuote();
@@ -74,7 +74,7 @@ $app->get('/list', function (ServerRequestInterface $req,   $res, $args = []) {
     
 })->add($authenticate)->setName('list');
 
-$app->post('/pass', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     $allPostVars = $req->getParsedBody();
     
@@ -106,7 +106,7 @@ $app->post('/pass', function (ServerRequestInterface $req,   $res, $args = []) {
 })->add($authenticate)->setName('pass');
 
 
-$app->get('/compare/{id}', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/compare/{id}', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     $newQuote = ORM::for_table('motor_quote', 'local')->
                     where('id', $args['id'])->
@@ -167,16 +167,14 @@ $app->get('/compare/{id}', function (ServerRequestInterface $req,   $res, $args 
 })->add($authenticate);
 
 
-$app->get('/adlog', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/adlog', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     $adArray = \Ksi\AdLog::adLogList();
-    
-    //print_r($adArray);
-    
+    print_r($adArray);
 });
 
 //assets 
-$app->get('/js/{js}', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/js/{js}', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     $file = 'assets/js/' . $args['js'];
     
@@ -191,7 +189,7 @@ $app->get('/js/{js}', function (ServerRequestInterface $req,   $res, $args = [])
     
 })->setName('js');
 
-$app->get('/css/{css}', function (ServerRequestInterface $req,   $res, $args = []) {
+$app->get('/css/{css}', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     $file = 'assets/css/' . $args['css'];
 

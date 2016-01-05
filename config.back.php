@@ -39,7 +39,6 @@ ORM::configure('logger', function ($log_string, $query_time) {
 ORM::configure('mysql:host=' . $ksiDbHost . ';dbname=' . $ksiDbName, null, 'ksi');
 ORM::configure('username', $ksiDbUser, 'ksi');
 ORM::configure('password', $ksiDbPass, 'ksi');
-//ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8') , 'ksi');
 ORM::configure('return_result_sets', true, 'ksi');
 ORM::configure('caching', true, 'ksi');
 ORM::configure('caching_auto_clear', true, 'ksi'); // automatically clear it on save
