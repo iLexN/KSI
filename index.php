@@ -196,7 +196,7 @@ $app->get('/css/{css}', function (ServerRequestInterface $req, ResponseInterface
     $out = new Assetic\Asset\AssetCollection(array(
             new Assetic\Asset\FileAsset($file)
         ), array(
-            
+            new Assetic\Filter\CssMinFilter()
         ));
         
         return $res->write($out->dump())
