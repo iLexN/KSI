@@ -4,11 +4,10 @@
  * For crontab use
  * becare the user/group permissions
  */
-$autoloader = require  'vendor/autoload.php';
-$autoloader->addPsr4('Ksi\\', __DIR__ . '/model');
+$autoloader = require 'vendor/autoload.php';
+$autoloader->addPsr4('Ksi\\', __DIR__.'/model');
 
 include 'config.php';
-
 
 /* @var $allQuote array->object */
 
@@ -20,4 +19,4 @@ if ($t == 'm') {
     $allQuote = Ksi\Quote::downloadQuote();
 }
 
-echo(date("Y-m-d H:i:s") . " : " . implode(',', $allQuote)) . "\n";
+echo(date('Y-m-d H:i:s').' : '.implode(',', $allQuote))."\n";

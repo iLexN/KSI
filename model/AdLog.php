@@ -1,25 +1,25 @@
 <?php
 /**
- * Login / get salesList
+ * Login / get salesList.
  */
 namespace Ksi;
 
 use ORM as ORM;
 
 /**
- * Login / get salesList
+ * Login / get salesList.
  */
 class AdLog
 {
     /**
-     * nothing
+     * nothing.
      */
     public function __construct()
     {
     }
 
     /**
-     * Find motor google adwords logs
+     * Find motor google adwords logs.
      *
      * @return array
      */
@@ -27,6 +27,7 @@ class AdLog
     {
         $adLog = ORM::for_table('sales_inte_online_inquiries', 'ksi')
                 ->find_array();
+
         return $adLog;
     }
 }
