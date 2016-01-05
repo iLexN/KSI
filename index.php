@@ -170,7 +170,7 @@ $app->get('/compare/{id}', function (ServerRequestInterface $req, ResponseInterf
 $app->get('/adlog', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
     
     $adArray = \Ksi\AdLog::adLogList();
-    print_r($adArray);
+    echo($adArray);
 });
 
 //assets 
