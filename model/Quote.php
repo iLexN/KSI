@@ -551,7 +551,8 @@ class Quote
     {
         if (!empty($a) && !empty($b) && !empty($c)) {
             return $a.$b.'('.$c.')';
-        } 
+        }
+
         return '';
     }
 
@@ -565,6 +566,7 @@ class Quote
         if (empty($v)) {
             return;
         }
+
         return $v;
     }
 
@@ -579,8 +581,10 @@ class Quote
     {
         if (!empty($d) && $d != '00-00-0000') {
             $dateArray = explode('-', $d);
+
             return $dateArray[2].'-'.$dateArray[1].'-'.$dateArray[0];
-        } 
+        }
+
         return;
     }
 
