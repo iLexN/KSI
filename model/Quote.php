@@ -273,8 +273,8 @@ class Quote
         $manyQuote = $manyQuoteOrm->find_many();
 
         $arQuoteIdAr = [];
+        $q = new self();
         foreach ($manyQuote as $quoteOrm) {
-            $q = new self();
             $q->processDownload($quoteOrm);
             $arQuoteIdAr[] = $quoteOrm->id;
         }
@@ -535,7 +535,6 @@ class Quote
         $yellowSheetOrm->dvce = $this->ormObjFromLocal->dvce;
         $yellowSheetOrm->crtv = $this->ormObjFromLocal->crtv;
         $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
-
         $yellowSheetOrm->save();
     }
 
@@ -552,9 +551,8 @@ class Quote
     {
         if (!empty($a) && !empty($b) && !empty($c)) {
             return $a.$b.'('.$c.')';
-        } else {
-            return '';
-        }
+        } 
+        return '';
     }
 
     /**
@@ -567,7 +565,6 @@ class Quote
         if (empty($v)) {
             return;
         }
-
         return $v;
     }
 
@@ -582,11 +579,9 @@ class Quote
     {
         if (!empty($d) && $d != '00-00-0000') {
             $dateArray = explode('-', $d);
-
             return $dateArray[2].'-'.$dateArray[1].'-'.$dateArray[0];
-        } else {
-            return;
-        }
+        } 
+        return;
     }
 
     /**

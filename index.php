@@ -19,11 +19,9 @@ $autoloader->addPsr4('Ksi\\', __DIR__.'/model');
 $authenticate = function (ServerRequestInterface $request, ResponseInterface $response, $next) {
     if (!isset($_SESSION['login'])) {
         $this->flash->addMessage('loginError', 'Login required');
-
         return $response->withStatus(301)->withHeader('Location', $this->router->pathFor('home'));
     }
     $response = $next($request, $response);
-
     return $response;
 };
 // middleware end
@@ -38,19 +36,17 @@ $app->post('/', function (ServerRequestInterface $req, ResponseInterface  $res, 
 
     if (Ksi\User::validateLogin($req->getParsedBody()['login'], $req->getParsedBody()['pwd'])) {
         $_SESSION['login'] = true;
-
         return $res->withStatus(301)->withHeader('Location', $this->router->pathFor('list'));
-    } else {
-        $this->flash->addMessage('loginError', 'Login Error, please check username and password');
-
-        return $res->withStatus(301)->withHeader('Location', $this->router->pathFor('home'));
-    }
+    } 
+    
+    $this->flash->addMessage('loginError', 'Login Error, please check username and password');
+    return $res->withStatus(301)->withHeader('Location', $this->router->pathFor('home'));
+    
 });
 
 $app->get('/logout', function (ServerRequestInterface $req, ResponseInterface $res, $args = []) {
     unset($_SESSION['login']);
     $this->flash->addMessage('loginError', 'You are Logout');
-
     return $res->withStatus(301)->withHeader('Location', $this->router->pathFor('home'));
 })->setName('logout');
 
@@ -60,7 +56,7 @@ $app->get('/list', function (ServerRequestInterface $req, ResponseInterface $res
     list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\Quote::outstandingQuote();
 
     $data = [
-        'totalQuote'                => $totalQuote,
+                'totalQuote'        => $totalQuote,
                 'numberListedQuote' => $numberListedQuote,
                 'quoteAr'           => $quoteAr,
                 'salesList'         => $salesList,
@@ -95,7 +91,6 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
 
     if (count($emailArray) === 0) {
         $this->flash->addMessage('quoteError', 'Please select sale to Pass');
-
         return $res->withStatus(301)->withHeader('Location', $this->router->pathFor('list'));
     }
 
