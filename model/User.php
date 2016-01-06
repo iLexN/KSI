@@ -56,8 +56,9 @@ class User
                     find_one();
         if ($user) {
             return true;
-        } else {
-            return false;
         }
+        
+        return false;
+        
     }
 }
