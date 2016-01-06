@@ -158,10 +158,8 @@ class Quote
             case 'chi':
             case 'zh':
                 return 'Chi';
-                break;
             default:
                 return 'Eng';
-                break;
         }
     }
 
@@ -221,7 +219,7 @@ class Quote
         $ysDuplicateAr = ORM::for_table('sales_intelligence', 'ksi')->
                 raw_query($sqlSearch, $sqlValueAr)->
                 find_array();
-        if ($ysDuplicateAr) {
+        if (!empty($ysDuplicateAr)) {
             $this->ormObjFromLocal->ys_client_no = implode(';', array_column($ysDuplicateAr, 'Client_NO'));
         }
     }
@@ -250,7 +248,7 @@ class Quote
         $ksiDuplicateAr = ORM::for_table('sales_intelligence', 'ksi')->
                 raw_query($sqlSearch, $sqlValueAr)->
                 find_array();
-        if ($ksiDuplicateAr) {
+        if (!empty($ksiDuplicateAr)) {
             $this->ormObjFromLocal->ksi_si_no = implode(';', array_column($ksiDuplicateAr, 'Sales_Intelligence_Number'));
         }
     }
@@ -321,6 +319,7 @@ class Quote
      */
     public static function pushOneQuote($ar)
     {
+        /* @var $oneQuoteOrm ORM */
         $oneQuoteOrm = ORM::for_table('motor_quote', 'local')->
                 find_one($ar['id']);
 
@@ -648,6 +647,7 @@ class Quote
 
     private function typeOfInsuranceKeyToText($key)
     {
+        $outArray = array();
         $outArray['Third_Party_Only'] = 'Third Party';
         $outArray['Comprehensive'] = 'Comprehensive';
         $outArray['Comprehensive_Third_Party'] = 'Third Party and Comp.';

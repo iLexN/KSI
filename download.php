@@ -9,8 +9,6 @@ $autoloader->addPsr4('Ksi\\', __DIR__.'/model');
 
 include 'config.php';
 
-/* @var $allQuote array->object */
-
 $t = (isset($_GET['t']) && !empty($_GET['t']))  ? $_GET['t'] : false;
 
 if ($t == 'm') {
