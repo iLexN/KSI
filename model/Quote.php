@@ -647,7 +647,7 @@ class Quote
 
     private function typeOfInsuranceKeyToText($key)
     {
-        $outArray = array();
+        $outArray = [];
         $outArray['Third_Party_Only'] = 'Third Party';
         $outArray['Comprehensive'] = 'Comprehensive';
         $outArray['Comprehensive_Third_Party'] = 'Third Party and Comp.';
