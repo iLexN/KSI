@@ -12,9 +12,9 @@ include 'config.php';
 $t = (isset($_GET['t']) && !empty($_GET['t']))  ? $_GET['t'] : false;
 
 if ($t == 'm') {
-    $allQuote = Ksi\Quote::downloadQuote('m');
+    $allQuote = Ksi\QuoteBuilder::downloadQuote('m');
 } else {
-    $allQuote = Ksi\Quote::downloadQuote();
+    $allQuote = Ksi\QuoteBuilder::downloadQuote();
 }
 
 echo(date('Y-m-d H:i:s').' : '.implode(',', $allQuote))."\n";

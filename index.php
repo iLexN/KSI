@@ -58,7 +58,7 @@ $app->get('/logout', function (ServerRequestInterface $req, ResponseInterface $r
 $app->get('/list', function (ServerRequestInterface $req, ResponseInterface $res, $args = []) {
 
     $salesList = \Ksi\User::salesList();
-    list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\Quote::outstandingQuote();
+    list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\QuoteBuilder::outstandingQuote();
 
     $data = [
                 'totalQuote'        => $totalQuote,
@@ -83,14 +83,14 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
     if (isset($allPostVars['pass']['all'])  && $allPostVars['pass']['all'] === 'Pass All') {
         foreach ($allPostVars['quote'] as $oneQuoteAr) {
             if (!empty($oneQuoteAr['sale'])) {
-                array_push($emailArray, \Ksi\Quote::pushOneQuote($oneQuoteAr));
+                array_push($emailArray, \Ksi\QuoteBuilder::pushOneQuote($oneQuoteAr));
             }
         }
     } else { // pass one
         $processID = array_keys($allPostVars['pass']);
         $oneQuote = $allPostVars['quote'][$processID[0]];
         if (!empty($oneQuote['sale'])) {
-            $emailArray = [\Ksi\Quote::pushOneQuote($oneQuote)];
+            $emailArray = [\Ksi\QuoteBuilder::pushOneQuote($oneQuote)];
         }
     }
 
