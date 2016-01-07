@@ -2,12 +2,14 @@
 namespace Ksi;
 
 use ORM as ORM;
+
 /**
  * Description of QuoteLayout
  *
  * @author user
  */
-class QuoteLayout {
+class QuoteLayout
+{
     
     /* @var $ormObjFromLocal ORM */
     public $ormObjFromLocal;
@@ -16,7 +18,8 @@ class QuoteLayout {
      * 
      * @param ORM $orm
      */
-    public function __construct(ORM $orm) {
+    public function __construct(ORM $orm)
+    {
         $this->ormObjFromLocal = $orm;
     }
     
@@ -109,5 +112,4 @@ class QuoteLayout {
 
         return implode(',', $outArray);
     }
-    
 }
