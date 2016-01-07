@@ -1,10 +1,11 @@
 <?php
+
 namespace Ksi;
 
 use ORM as ORM;
 
 /**
- * Quote Model
+ * Quote Model.
  */
 class Quote
 {
@@ -150,7 +151,7 @@ class Quote
             $this->ormObjFromLocal->ksi_si_no = implode(';', array_column($ksiDuplicateAr, 'Sales_Intelligence_Number'));
         }
     }
-    
+
     /**
      * prog flow for pushing.
      *

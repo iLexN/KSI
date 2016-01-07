@@ -1,28 +1,27 @@
 <?php
+
 namespace Ksi;
 
 use ORM as ORM;
 
 /**
- * Description of QuoteLayout
+ * Description of QuoteLayout.
  *
  * @author user
  */
 class QuoteLayout
 {
-    
     /* @var $ormObjFromLocal ORM */
     public $ormObjFromLocal;
-    
+
     /**
-     * 
      * @param ORM $orm
      */
     public function __construct(ORM $orm)
     {
         $this->ormObjFromLocal = $orm;
     }
-    
+
     /**
      * layout use function.
      *
