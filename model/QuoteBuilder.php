@@ -1,17 +1,16 @@
 <?php
+
 namespace Ksi;
 
-use Ksi\Quote;
 use ORM as ORM;
 
 /**
- * Description of QuoteBuilder
+ * Description of QuoteBuilder.
  *
  * @author user
  */
-class QuoteBuilder {
-    
-    
+class QuoteBuilder
+{
     /**
      * Push 1 Quote to Sale.
      *
@@ -41,8 +40,7 @@ class QuoteBuilder {
                 ];
         }
     }
-    
-    
+
     /**
      * list the quote have not push yet.
      *
@@ -68,7 +66,7 @@ class QuoteBuilder {
                     $numberListed,
                 ];
     }
-    
+
     /**
      * Download the data from the source database, crontab use.
      * 
@@ -97,6 +95,4 @@ class QuoteBuilder {
 
         return $arQuoteIdAr;
     }
-    
-    
 }
