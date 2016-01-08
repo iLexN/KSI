@@ -2,8 +2,6 @@
 
 namespace Ksi;
 
-use Ksi\QuotePush;
-use Ksi\QuoteDownload;
 use ORM as ORM;
 
 /**

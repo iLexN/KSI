@@ -1,22 +1,24 @@
 <?php
+
 namespace Ksi;
 
 use ORM as ORM;
 
 /**
- * push Quote
+ * push Quote.
  */
-class QuotePush {
-   
+class QuotePush
+{
     /**
      * @var ORM ORM-Object
      */
     public $ormObjFromLocal;
-    
-    public function __construct(ORM $orm) {
+
+    public function __construct(ORM $orm)
+    {
         $this->ormObjFromLocal = $orm;
     }
-    
+
     /**
      * prog flow for pushing.
      *
@@ -32,7 +34,7 @@ class QuotePush {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
         }
     }
-    
+
     /**
      * Save data from local to KSI, some data need process before save.
      *
@@ -171,7 +173,7 @@ class QuotePush {
 
         $yellowSheetOrm->save();
     }
-    
+
     private function haveAdData()
     {
         if (
@@ -188,9 +190,9 @@ class QuotePush {
 
         return;
     }
-    
+
     /**
-     * add ad data to ad table
+     * add ad data to ad table.
      */
     private function adDataToYellowSheet()
     {
@@ -206,7 +208,7 @@ class QuotePush {
         $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
         $yellowSheetOrm->save();
     }
-    
+
     /**
      * prog flow for pushing.
      *
@@ -217,7 +219,7 @@ class QuotePush {
         $this->ormObjFromLocal->status = $s;
         $this->ormObjFromLocal->save();
     }
-    
+
     /**
      * data formate process to yellow sheet for HKID.
      *
@@ -235,7 +237,7 @@ class QuotePush {
 
         return '';
     }
-    
+
     /**
      * set null value when empty.
      *
@@ -249,7 +251,7 @@ class QuotePush {
 
         return $v;
     }
-    
+
     /**
      * data formate process to yellow sheet for date.
      *
@@ -267,7 +269,7 @@ class QuotePush {
 
         return;
     }
-    
+
     /**
      * data formate process to yellow sheet for Plans Info.
      *
@@ -321,7 +323,7 @@ class QuotePush {
 
         return $outArray;
     }
-    
+
     private function typeOfInsuranceKeyToText($key)
     {
         $outArray = [];
