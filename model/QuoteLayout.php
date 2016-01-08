@@ -108,22 +108,24 @@ class QuoteLayout implements \ArrayAccess
 
         return implode(',', $outArray);
     }
-    
-    
-    public function offsetSet($offset, $value) {
-            $this->ormObjFromLocal->$offset = $value;
+
+    public function offsetSet($offset, $value)
+    {
+        $this->ormObjFromLocal->$offset = $value;
     }
 
-    public function offsetExists($offset) {
+    public function offsetExists($offset)
+    {
         return isset($this->ormObjFromLocal->$offset);
     }
 
-    public function offsetUnset($offset) {
+    public function offsetUnset($offset)
+    {
         unset($this->ormObjFromLocal->$offset);
     }
 
-    public function offsetGet($offset) {
+    public function offsetGet($offset)
+    {
         return isset($this->ormObjFromLocal->$offset) ? $this->ormObjFromLocal->$offset : null;
     }
-    
 }
