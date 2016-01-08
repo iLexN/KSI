@@ -9,7 +9,7 @@ use ORM as ORM;
  *
  * @author user
  */
-class QuoteLayout
+class QuoteLayout implements \ArrayAccess
 {
     /* @var $ormObjFromLocal ORM */
     public $ormObjFromLocal;
@@ -108,4 +108,22 @@ class QuoteLayout
 
         return implode(',', $outArray);
     }
+    
+    
+    public function offsetSet($offset, $value) {
+            $this->ormObjFromLocal->$offset = $value;
+    }
+
+    public function offsetExists($offset) {
+        return isset($this->ormObjFromLocal->$offset);
+    }
+
+    public function offsetUnset($offset) {
+        unset($this->ormObjFromLocal->$offset);
+    }
+
+    public function offsetGet($offset) {
+        return isset($this->ormObjFromLocal->$offset) ? $this->ormObjFromLocal->$offset : null;
+    }
+    
 }
