@@ -39,16 +39,6 @@ class QuoteDownload
     }
 
     /**
-     * set the ORM object for Locat DB.
-     *
-     * @param object $ormObj orm-object
-     */
-    public function setOrmObjFromLocal($ormObj)
-    {
-        $this->ormObjFromLocal = $ormObj;
-    }
-
-    /**
      * Save the download data from source to local.
      */
     private function saveDownload()
