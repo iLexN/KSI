@@ -2,6 +2,8 @@
 
 namespace Ksi;
 
+use Ksi\QuotePush;
+use Ksi\QuoteDownload;
 use ORM as ORM;
 
 /**
@@ -25,8 +27,7 @@ class QuoteBuilder
                 find_one($ar['id']);
 
         if ($oneQuoteOrm->status === '0') {
-            $q = new Quote();
-            $q->setOrmObjFromLocal($oneQuoteOrm);
+            $q = new QuotePush($oneQuoteOrm);
             $q->proccessDataToYellowSheet($ar['sale']);
 
             return [
@@ -87,7 +88,7 @@ class QuoteBuilder
         $manyQuote = $manyQuoteOrm->find_many();
 
         $arQuoteIdAr = [];
-        $q = new Quote();
+        $q = new QuoteDownload();
         foreach ($manyQuote as $quoteOrm) {
             $q->processDownload($quoteOrm);
             $arQuoteIdAr[] = $quoteOrm->id;
