@@ -73,9 +73,6 @@ class QuoteLayout
     public function langKeyMap()
     {
         switch ($this->ormObjFromLocal->lang) {
-            case 'hk':
-            case 'ch':
-            case 'chi':
             case 'zh':
                 return 'Chi';
             default:

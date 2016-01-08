@@ -5,151 +5,18 @@ namespace Ksi;
 use ORM as ORM;
 
 /**
- * Quote Model.
+ * push Quote.
  */
-class Quote
+class QuotePush
 {
     /**
-     * @var object ORM-object
-     */
-    private $ormObjFromSource;
-
-    /**
-     * @var object ORM-Object
+     * @var ORM ORM-Object
      */
     public $ormObjFromLocal;
 
-    /**
-     * nothing.
-     */
-    public function __construct()
+    public function __construct(ORM $orm)
     {
-    }
-
-    /**
-     * Flow for process Download -> save , update , find dup.
-     *
-     * @param object $ormQuote orm-object
-     */
-    public function processDownload($ormQuote)
-    {
-        $this->ormObjFromSource = $ormQuote;
-        $this->saveDownload();
-        $this->updateSourceDownload();
-    }
-
-    /**
-     * set the ORM object for Locat DB.
-     *
-     * @param object $ormObj orm-object
-     */
-    public function setOrmObjFromLocal($ormObj)
-    {
-        $this->ormObjFromLocal = $ormObj;
-    }
-
-    /**
-     * Save the download data from source to local.
-     */
-    private function saveDownload()
-    {
-        $this->ormObjFromLocal = ORM::for_table('motor_quote', 'local')->create();
-        $this->ormObjFromLocal->set($this->ormObjFromSource->as_array());
-        $this->ormObjFromLocal->save();
-    }
-
-    /**
-     * update the source which will no download again
-     * this process after saveDownload().
-     */
-    private function updateSourceDownload()
-    {
-        $this->ormObjFromSource->download = 1;
-
-        $this->ormObjFromSource->hkid_1 = '';
-        $this->ormObjFromSource->hkid_2 = '';
-        $this->ormObjFromSource->hkid_3 = '';
-
-        $this->ormObjFromSource->hkid_1_2 = '';
-        $this->ormObjFromSource->hkid_2_2 = '';
-        $this->ormObjFromSource->hkid_3_2 = '';
-
-        $this->ormObjFromSource->dob = '';
-        $this->ormObjFromSource->dob2 = '';
-
-        $this->ormObjFromSource->save();
-    }
-
-    /**
-     * flow:
-     * findKsiDuplicate()
-     * findYellowSheetDuplicate()
-     * $this->ormObjFromLocal->save();.
-     */
-    public function findDuplicate()
-    {
-        $this->findKsiDuplicate();
-        $this->findYellowSheetDuplicate();
-        $this->ormObjFromLocal->save();
-    }
-
-    /**
-     * sql copy from old script.
-     */
-    private function findYellowSheetDuplicate()
-    {
-        $sqlValueAr = [
-            'tel'   => $this->ormObjFromLocal->contactno,
-            'email' => $this->ormObjFromLocal->email,
-        ];
-        $sqlSearch = "
-		SELECT `Client_NO`
-		FROM `client`
-		WHERE
-		( TRIM(IFNULL(`Home_Phone`,'')) <> '' AND REPLACE(`Home_Phone`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Mobile_One`,'')) <> '' AND REPLACE(`Mobile_One`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Mobile_Two`,'')) <> '' AND REPLACE(`Mobile_Two`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Business_Phone`,'')) <> '' AND REPLACE(`Business_Phone`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Person_One_Mobile`,'')) <> '' AND REPLACE(`Person_One_Mobile`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Person_One_Home`,'')) <> '' AND REPLACE(`Person_One_Home`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Mailer_Phone`,'')) <> '' AND REPLACE(`Mailer_Phone`, ' ', '') = :tel ) OR
-		( TRIM(IFNULL(`Contact_Phone`,'')) <> '' AND REPLACE(`Contact_Phone`, ' ', '') = :tel )
-		";
-        $ysDuplicateAr = ORM::for_table('sales_intelligence', 'ksi')->
-                raw_query($sqlSearch, $sqlValueAr)->
-                find_array();
-        if (!empty($ysDuplicateAr)) {
-            $this->ormObjFromLocal->ys_client_no = implode(';', array_column($ysDuplicateAr, 'Client_NO'));
-        }
-    }
-
-    /**
-     * sql copy from old script.
-     *
-     * set $this->ormObjFromLocal->ksi_si_no = string xx;xx;xx;
-     */
-    private function findKsiDuplicate()
-    {
-        $sqlValueAr = [
-            'tel'   => $this->ormObjFromLocal->contactno,
-            'email' => $this->ormObjFromLocal->email,
-        ];
-
-        $sqlSearch = "
-            SELECT `Sales_Intelligence_Number`
-            FROM `sales_intelligence`
-            WHERE
-                ( TRIM(IFNULL(`mobile`,'')) <> '' AND REPLACE(`mobile`, ' ', '') = :tel ) OR
-                ( TRIM(IFNULL(`home_phone`,'')) <> '' AND REPLACE(`home_phone`, ' ', '') = :tel ) OR
-                ( TRIM(IFNULL(`bus_phone`,'')) <> '' AND REPLACE(`bus_phone`, ' ', '') = :tel ) OR
-                ( TRIM(IFNULL(`email`,'')) <> '' AND REPLACE(`email`, ' ', '') = :email )
-        ";
-        $ksiDuplicateAr = ORM::for_table('sales_intelligence', 'ksi')->
-                raw_query($sqlSearch, $sqlValueAr)->
-                find_array();
-        if (!empty($ksiDuplicateAr)) {
-            $this->ormObjFromLocal->ksi_si_no = implode(';', array_column($ksiDuplicateAr, 'Sales_Intelligence_Number'));
-        }
+        $this->ormObjFromLocal = $orm;
     }
 
     /**
@@ -166,17 +33,6 @@ class Quote
         } else {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
         }
-    }
-
-    /**
-     * prog flow for pushing.
-     *
-     * @param int $s 0 default for watting action, 1 for pushed, 2 for Rubbish
-     */
-    private function updateLocalPushStatus($s)
-    {
-        $this->ormObjFromLocal->status = $s;
-        $this->ormObjFromLocal->save();
     }
 
     /**
@@ -335,6 +191,9 @@ class Quote
         return;
     }
 
+    /**
+     * add ad data to ad table.
+     */
     private function adDataToYellowSheet()
     {
         $yellowSheetOrm = ORM::for_table('sales_inte_online_inquiries', 'ksi')->create();
@@ -348,6 +207,17 @@ class Quote
         $yellowSheetOrm->crtv = $this->ormObjFromLocal->crtv;
         $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
         $yellowSheetOrm->save();
+    }
+
+    /**
+     * prog flow for pushing.
+     *
+     * @param int $s 0 default for watting action, 1 for pushed, 2 for Rubbish
+     */
+    private function updateLocalPushStatus($s)
+    {
+        $this->ormObjFromLocal->status = $s;
+        $this->ormObjFromLocal->save();
     }
 
     /**
@@ -453,8 +323,6 @@ class Quote
 
         return $outArray;
     }
-
-    // data formate process to yellow sheet end
 
     private function typeOfInsuranceKeyToText($key)
     {
