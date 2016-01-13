@@ -35,6 +35,7 @@ class QuoteDownload
     {
         $this->ormObjFromSource = $ormQuote;
         $this->saveDownload();
+        $this->saveDownloadToKSI();
         $this->updateSourceDownload();
     }
 
@@ -46,6 +47,17 @@ class QuoteDownload
         $this->ormObjFromLocal = ORM::for_table('motor_quote', 'local')->create();
         $this->ormObjFromLocal->set($this->ormObjFromSource->as_array());
         $this->ormObjFromLocal->save();
+    }
+    
+    /**
+     * Save the download data from source to local
+     */
+    private function saveDownloadToKSI()
+    {
+        /* @var $yellowSheetOrm ORM */
+        $yellowSheetOrm = ORM::for_table('sales_inte_online', 'ksi')->create();
+        $yellowSheetOrm->set($this->ormObjFromSource->as_array());
+        $yellowSheetOrm->save();
     }
 
     /**
