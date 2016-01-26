@@ -8,7 +8,6 @@ session_start();
 
 error_reporting(E_ALL);
 
-
 $autoloader = require 'vendor/autoload.php';
 
 include 'config.php';

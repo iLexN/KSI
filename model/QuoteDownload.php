@@ -48,9 +48,9 @@ class QuoteDownload
         $this->ormObjFromLocal->set($this->ormObjFromSource->as_array());
         $this->ormObjFromLocal->save();
     }
-    
+
     /**
-     * Save the download data from source to local
+     * Save the download data from source to local.
      */
     private function saveDownloadToKSI()
     {
