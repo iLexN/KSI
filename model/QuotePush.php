@@ -30,8 +30,10 @@ class QuotePush
             $this->dataToYellowSheet($sale);
             $this->haveAdData(); // if have ad data than insert to ad table
             $this->updateLocalPushStatus(1);
+            $this->updatePushStatusToKSI(1);
         } else {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
+            $this->updatePushStatusToKSI(2);
         }
     }
 
@@ -218,6 +220,15 @@ class QuotePush
     {
         $this->ormObjFromLocal->status = $s;
         $this->ormObjFromLocal->save();
+    }
+
+    private function updatePushStatusToKSI($s)
+    {
+        $ksiOrm = ORM::for_table('sales_inte_online', 'ksi')->
+                where('id',  $this->ormObjFromLocal->id)->
+                find_one();
+        $ksiOrm->status = $s;
+        $ksiOrm->save();
     }
 
     /**
