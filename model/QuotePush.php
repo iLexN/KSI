@@ -225,7 +225,7 @@ class QuotePush
     private function updatePushStatusToKSI($s)
     {
         $ksiOrm = ORM::for_table('sales_inte_online', 'ksi')->
-                where('id',  $this->ormObjFromLocal->id)->
+                where('id', $this->ormObjFromLocal->id)->
                 find_one();
         $ksiOrm->status = $s;
         $ksiOrm->save();
