@@ -30,10 +30,10 @@ class QuotePush
             $this->dataToYellowSheet($sale);
             $this->haveAdData(); // if have ad data than insert to ad table
             $this->updateLocalPushStatus(1);
-            $this->updatePushStatusToKSI(1);
+            //$this->updatePushStatusToKSI(1);
         } else {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
-            $this->updatePushStatusToKSI(2);
+            //$this->updatePushStatusToKSI(2);
         }
     }
 

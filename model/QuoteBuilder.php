@@ -21,7 +21,7 @@ class QuoteBuilder
     public static function pushOneQuote($ar)
     {
         /* @var $oneQuoteOrm ORM */
-        $oneQuoteOrm = ORM::for_table('motor_quote', 'local')->
+        $oneQuoteOrm = ORM::for_table('sales_inte_online', 'ksi')->
                 find_one($ar['id']);
 
         if ($oneQuoteOrm->status === '0') {
@@ -47,7 +47,7 @@ class QuoteBuilder
      */
     public static function outstandingQuote()
     {
-        $manyQuote = ORM::for_table('motor_quote', 'local')->
+        $manyQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('status', 0);
         $total = $manyQuote->count();
 

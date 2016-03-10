@@ -108,11 +108,11 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
 
 $app->get('/compare/{id}', function (ServerRequestInterface $req, ResponseInterface  $res, $args = []) {
 
-    $newQuote = ORM::for_table('motor_quote', 'local')->
+    $newQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('id', $args['id'])->
                     find_one();
 
-    $oldQuote = ORM::for_table('motor_quote', 'local')->
+    $oldQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('id', $newQuote->oldRefID)->
                     find_one();
 
