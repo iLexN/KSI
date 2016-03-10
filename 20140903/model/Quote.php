@@ -302,7 +302,7 @@ class Quote
      */
     public static function outstandingQuote()
     {
-        $manyQuote = ORM::for_table('motor_quote', 'local')->
+        $manyQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('status', 0);
         $total = $manyQuote->count();
 
@@ -332,7 +332,7 @@ class Quote
      */
     public static function pushOneQuote($ar)
     {
-        $oneQuoteOrm = ORM::for_table('motor_quote', 'local')->
+        $oneQuoteOrm = ORM::for_table('sales_inte_online', 'ksi')->
                 find_one($ar['id']);
 
         if ($oneQuoteOrm->status === '0') {
@@ -363,10 +363,10 @@ class Quote
             $this->dataToYellowSheet($sale);
             $this->haveAdData(); // if have ad data than insert to ad table
             $this->updateLocalPushStatus(1);
-            $this->updatePushStatusToKSI(1);
+            //$this->updatePushStatusToKSI(1);
         } else {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
-            $this->updatePushStatusToKSI(2);
+            //$this->updatePushStatusToKSI(2);
         }
     }
 

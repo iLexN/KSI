@@ -98,11 +98,11 @@ $app->post('/pass', $authenticate($app), function () use ($app) {
 
 $app->get('/compare/:id', $authenticate($app), function ($id) use ($app) {
     
-    $newQuote = ORM::for_table('motor_quote', 'local')->
+    $newQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('id', $id)->
                     find_one();
     
-    $oldQuote = ORM::for_table('motor_quote', 'local')->
+    $oldQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('id', $newQuote->oldRefID)->
                     find_one();
     
