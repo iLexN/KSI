@@ -47,8 +47,6 @@ class QuoteLayout implements \ArrayAccess
         if ($this->ormObjFromLocal->payButtonClick == 1) {
             return 'Yes';
         }
-
-        return;
     }
 
     /**

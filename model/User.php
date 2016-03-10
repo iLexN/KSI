@@ -42,7 +42,7 @@ class User
 
     /**
      * validateLogin.
-     * 
+     *
      * @param string $username login username
      * @param string $pass     login password
      *
