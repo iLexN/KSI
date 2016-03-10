@@ -68,7 +68,7 @@ class QuoteBuilder
 
     /**
      * Download the data from the source database, crontab use.
-     * 
+     *
      * @param string $t a = auto , m = not auto
      *
      * @return array downloaded Quote ID

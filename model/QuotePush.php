@@ -189,8 +189,6 @@ class QuotePush
             ) {
             $this->adDataToYellowSheet();
         }
-
-        return;
     }
 
     /**
@@ -277,8 +275,6 @@ class QuotePush
 
             return $dateArray[2].'-'.$dateArray[1].'-'.$dateArray[0];
         }
-
-        return;
     }
 
     /**

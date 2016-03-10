@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * For crontab use
  * becare the user/group permissions
  */
