@@ -220,6 +220,7 @@ class QuotePush
         $this->ormObjFromLocal->save();
     }
 
+    /**
     private function updatePushStatusToKSI($s)
     {
         $ksiOrm = ORM::for_table('sales_inte_online', 'ksi')->
@@ -228,6 +229,7 @@ class QuotePush
         $ksiOrm->status = $s;
         $ksiOrm->save();
     }
+    **/
 
     /**
      * data formate process to yellow sheet for HKID.
