@@ -37,7 +37,7 @@
                 <tr class="{{ cycle(['altBg2', 'altBg'], loop.index)}}">    
                     <td><input type="hidden" name="quote[{{ quote.ormObjFromLocal.id }}][id]" value="{{ quote.ormObjFromLocal.id }}">{{ quote.ormObjFromLocal.name }}</td>
                     <td>{{ quote.ormObjFromLocal.contactno }}</td>
-                    <td>{{ quote.ormObjFromLocal.age }}</td>
+                    <td>{{ quote.showAge() }}</td>
                     <td>{{ quote.ormObjFromLocal.drivingExp |raw }}</td>
                     <td>{{ quote.ormObjFromLocal.insuranceType }}</td>
                     <td>{{ quote.ormObjFromLocal.ncd }}</td>
