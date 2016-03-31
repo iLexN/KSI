@@ -79,6 +79,24 @@ class QuoteLayout implements \ArrayAccess
     }
 
     /**
+     * map age range code.
+     * 
+     * @return string
+     */
+    public function showAge(){
+        switch ($this->ormObjFromLocal->age) {
+            case 1:
+                return '25-60';
+            case 88:
+                return '< 21';
+            case 99:
+                return '> 60';
+            default :
+                return $this->ormObjFromLocal->age;
+        }
+    }
+
+    /**
      * layout use function.
      *
      * @return string planName - SubPlaneName

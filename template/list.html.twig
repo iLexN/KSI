@@ -37,7 +37,7 @@
                 <tr class="{{ cycle(['altBg2', 'altBg'], loop.index)}}">    
                     <td><input type="hidden" name="quote[{{ quote.id }}][id]" value="{{ quote.id }}">{{ quote.name }}</td>
                     <td>{{ quote.contactno }}</td>
-                    <td>{{ quote.age }}</td>
+                    <td>{{ quote.showAge() }}</td>
                     <td>{{ quote.drivingExp |raw }}</td>
                     <td>{{ quote.insuranceType }}</td>
                     <td>{{ quote.ncd }}</td>
