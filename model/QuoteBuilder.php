@@ -80,7 +80,7 @@ class QuoteBuilder
                     order_by_asc('id');
 
         if ($t == 'a') {
-            $manyQuoteOrm->where_lt('create_datetime', date('Y-m-d H:i:s', strtotime('-15 minutes')));
+            $manyQuoteOrm->where_lt('create_datetime', date('Y-m-d H:i:s', strtotime('-10 minutes')));
         }
 
         $manyQuote = $manyQuoteOrm->find_many();
