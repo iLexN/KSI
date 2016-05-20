@@ -79,6 +79,12 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
 
     $allPostVars = $req->getParsedBody();
 
+    if ( !isset($allPostVars['quote'])  ) {
+        $this->flash->addMessage('quoteError', 'Please select sale to Pass');
+        return $res->withStatus(301)->withHeader('Location', $this->router->pathFor('list'));
+    }
+
+
     $emailArray = [];
     if (isset($allPostVars['pass']['all'])  && $allPostVars['pass']['all'] === 'Pass All') {
         foreach ($allPostVars['quote'] as $oneQuoteAr) {
