@@ -1,10 +1,11 @@
 {% spaceless %}
 <!DOCTYPE html>
 <html class="no-js">
+<head>
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="{{ path_for('css', {"css": "css.css"}) }}" type="text/css">
-    
+    {% block metahead %}{% endblock %}
 </head>
 <body>
     {% block content %}{% endblock %}

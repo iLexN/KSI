@@ -1,5 +1,10 @@
 {# empty Twig template #}
 {% extends "structure/base.html.twig" %}
+
+{% metahead  %}
+<META http-equiv="refresh" content="10;URL={{ path_for('list') }}">
+{% endblock %}
+
 {% block content %}
     <div class="divAlignCenter listPage">
         {% if flash.quoteError.0 is not empty %}
@@ -18,5 +23,7 @@
         </ul>
         
         <p><a href=" {{ path_for('list') }} ">Click Here to go Back</a></p>
+        
+        <p style="text-align:right"><a href=" {{ path_for('list') }} ">Click Here to go Back</a></p>
     </div>
 {% endblock %}
