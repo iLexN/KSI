@@ -1,4 +1,5 @@
 #### [Current]
+ * [26ec12e](../../commit/26ec12e) - __(2016-12-01 15:20:22 +0800)__ change log update
  * [39961bc](../../commit/39961bc) - __(2016-12-01 15:09:28 +0800)__ change log update
  * [60b51f0](../../commit/60b51f0) - __(2016-12-01 15:08:54 +0800)__ take out download to backup db
  * [832f602](../../commit/832f602) - __(2016-11-16 11:11:11 +0800)__ package version update
@@ -52,6 +53,9 @@
 #### [live-v1]
 
 #### [2015-10-12]
+
+#### [2.0.1]
+ * [26ec12e](../../commit/26ec12e) - __(2016-12-01 15:20:22 +0800)__ change log update
 
 #### [1.1.2]
  * [39961bc](../../commit/39961bc) - __(2016-12-01 15:09:28 +0800)__ change log update
