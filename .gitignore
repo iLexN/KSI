@@ -12,3 +12,5 @@
 /download_log/
 /logs/
 /20140903/vendor/
+/cache/
+/info.php

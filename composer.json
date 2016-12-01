@@ -1,0 +1,13 @@
+{
+        "require" : {
+                "twig/twig": "1.*",
+                "j4mie/paris": "v1.5.3",
+                "j4mie/idiorm": "v1.5.1",
+                "slim/slim": "2.*",
+		"slim/views": "0.1.2",
+		"kriswallsmith/assetic": "v1.1.2",
+		"lmammino/jsmin4assetic": "1.0.0",
+		"flynsarmy/slim-monolog": "v1.0.0",
+		"css-crush/css-crush": "2.2.1"
+        }
+}

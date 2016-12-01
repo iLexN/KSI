@@ -1,0 +1,5 @@
+<option value="" selected="selected">Pending</option>{# empty Twig template #}
+{% for sales in salesList %}
+    <option value="{{ sales.Name }}">{{ sales.Name }}</option>
+{% endfor %}
+<option value="Rubbish">Rubbish</option>{# empty Twig template #}
