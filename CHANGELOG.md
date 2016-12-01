@@ -1,4 +1,5 @@
 #### [Current]
+ * [60b51f0](../../commit/60b51f0) - __(2016-12-01 15:08:54 +0800)__ take out download to backup db
  * [832f602](../../commit/832f602) - __(2016-11-16 11:11:11 +0800)__ package version update
  * [2f325a1](../../commit/2f325a1) - __(2016-06-27 17:15:19 +0800)__ add register logger to download
  * [b71e00f](../../commit/b71e00f) - __(2016-06-23 17:13:55 +0800)__ download time change
