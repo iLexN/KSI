@@ -34,7 +34,7 @@ class QuoteDownload
     public function processDownload($ormQuote)
     {
         $this->ormObjFromSource = $ormQuote;
-        $this->saveDownload();
+        //$this->saveDownload();
         $this->saveDownloadToKSI();
         $this->updateSourceDownload();
     }
