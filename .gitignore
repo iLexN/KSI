@@ -1,5 +1,5 @@
-/download_log/
-/logs/
+/download_log/*
+/logs/*
 /config.php
 /error_log
 /vendor/
