@@ -1,16 +1,8 @@
-/20140903/model/nbproject/private/
-/20140903/model/nbproject/
-/nbproject/private/
-/20140903/download_log/
-/20140903/logs/
-/20140903/config.php
-/20140903/error_log
-/20140903/
 /download_log/
 /logs/
 /config.php
 /error_log
 /vendor/
 /note.txt
-/composer.lock
 /defterdar.php
+/cache/*
