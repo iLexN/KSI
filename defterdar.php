@@ -2,7 +2,7 @@
 
 namespace GenChangeLog;
 
-class defterdar
+class Defterdar
 {
     public $executer = 'shell_exec';
 
@@ -14,7 +14,7 @@ class defterdar
     public function __construct()
     {
         if (!function_exists($this->executer)) {
-            throw new Exception('This function has been disabled.');
+            throw new \Exception('This function has been disabled.');
         }
     }
 
@@ -33,7 +33,7 @@ class defterdar
         $count = count($this->tags);
 
         if ($count === 0) {
-            throw new Exception('Does not have any tag.');
+            throw new \Exception('Does not have any tag.');
         }
 
         for ($i = 0; $i < $count; ++$i) {
@@ -81,7 +81,7 @@ class defterdar
     {
         $this->file = fopen('CHANGELOG.md', 'w+');
         if (!$this->file) {
-            throw new Exception('Unable to create file.');
+            throw new \Exception('Unable to create file.');
         }
 
         fwrite($this->file, $this->output);
@@ -97,6 +97,6 @@ try {
         ->fileContentGenerator()
         ->markDownGenerator()
         ->fileGenerate();
-} catch (Exception $e) {
+} catch (\Exception $e) {
     echo $e->getMessage();
 }
