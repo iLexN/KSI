@@ -1,10 +1,15 @@
 <?php
 
+namespace GenChangeLog;
+
 class defterdar
 {
     public $executer = 'shell_exec';
 
-    private $tags, $logs, $output, $file;
+    private $tags;
+    private $logs;
+    private $output;
+    private $file;
 
     public function __construct()
     {
