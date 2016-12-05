@@ -42,13 +42,18 @@ class Defterdar
             $lastTag = $this->tags[$i];
         }
 
+        $this->logs['Current'] = $this->currentLog($lastTag,$executer);
+
+        return $this;
+    }
+
+    private function currentLog($lastTag,$executer)
+    {
         $lastTagDate = $executer('git log -1 --format=%ai '.$lastTag);
         $date = new \DateTime($lastTagDate);
         $date->add(new \DateInterval('PT2S'));
 
-        $this->logs['Current'] = $executer('git log --pretty="%h%x09%ci%x09%s" --since="'.$date->format('Y-m-d H:i:s').'"'."\n\n");
-
-        return $this;
+        return $executer('git log --pretty="%h%x09%ci%x09%s" --since="'.$date->format('Y-m-d H:i:s').'"'."\n\n");
     }
 
     public function fileContentGenerator()
