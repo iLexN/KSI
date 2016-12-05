@@ -6,10 +6,9 @@ class defterdar
 
     private $tags, $logs, $output, $file;
 
-
     public function __construct()
     {
-        if (! function_exists($this->executer)) {
+        if (!function_exists($this->executer)) {
             throw new Exception('This function has been disabled.');
         }
     }
@@ -17,12 +16,14 @@ class defterdar
     public function getTags($executer)
     {
         $this->tags = array_filter(explode("\n", $executer('git tag | sort -u')));
+
         return $this;
     }
 
     public function getLogs($executer)
     {
         $nextTag = null;
+        $lastTag = null;
 
         $count = count($this->tags);
 
@@ -30,19 +31,17 @@ class defterdar
             throw new Exception('Does not have any tag.');
         }
 
-        for ($i = 0;$i < $count; $i++) {
-            $this->logs[$this->tags[$i]] = $executer('git log --pretty="%h%x09%ci%x09%s" ' . $nextTag . $this->tags[$i] . ' | grep -v "Merge branch"' . "\n\n");
-            $nextTag = $this->tags[$i] . '..';
+        for ($i = 0; $i < $count; ++$i) {
+            $this->logs[$this->tags[$i]] = $executer('git log --pretty="%h%x09%ci%x09%s" '.$nextTag.$this->tags[$i].' | grep -v "Merge branch"'."\n\n");
+            $nextTag = $this->tags[$i].'..';
             $lastTag = $this->tags[$i];
         }
-//echo($lastTag);
-$lastTagDate = $executer('git log -1 --format=%ai ' .$lastTag);
-$date = new DateTime($lastTagDate);
-$date->add(new DateInterval('PT2S'));
 
+        $lastTagDate = $executer('git log -1 --format=%ai '.$lastTag);
+        $date = new DateTime($lastTagDate);
+        $date->add(new DateInterval('PT2S'));
 
-        $this->logs['Current'] = $executer('git log --pretty="%h%x09%ci%x09%s" --since="'.$date->format("Y-m-d H:i:s").'"' .  "\n\n");
-        //$this->logs['Current'] = $executer('git log --pretty="%h%x09%ci%x09%s" ' . $lastTag . "\n\n");
+        $this->logs['Current'] = $executer('git log --pretty="%h%x09%ci%x09%s" --since="'.$date->format('Y-m-d H:i:s').'"'."\n\n");
 
         return $this;
     }
@@ -56,7 +55,7 @@ $date->add(new DateInterval('PT2S'));
         $this->output = null;
 
         foreach ($this->logs as $tag => $commits) {
-            $this->output .= '#### [' . $tag . ']' . "\n";
+            $this->output .= '#### ['.$tag.']'."\n";
             $this->output .= $commits;
             $this->output .= "\n";
         }
@@ -76,7 +75,7 @@ $date->add(new DateInterval('PT2S'));
     public function fileGenerate()
     {
         $this->file = fopen('CHANGELOG.md', 'w+');
-        if (! $this->file) {
+        if (!$this->file) {
             throw new Exception('Unable to create file.');
         }
 
@@ -86,7 +85,7 @@ $date->add(new DateInterval('PT2S'));
 }
 
 try {
-    $git = new Defterdar;
+    $git = new Defterdar();
     $executer = $git->executer;
     $git->getTags($executer)
         ->getLogs($executer)
