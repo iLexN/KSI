@@ -171,14 +171,23 @@ class Quote
             case 'chi':
             case 'zh':
                 return 'Chi';
-                break;
             default:
                 return 'Eng';
-                break;
         }
     }
 
-    public function showAge(){
+    public function isCustomCarMark()
+    {
+        return (int)$this->ormObjFromLocal->carMake_key === 9999;
+    }
+
+    public function isCustomCarModel()
+    {
+        return is_numeric($this->ormObjFromLocal->carModel_key);
+    }
+
+    public function showAge()
+    {
         switch ($this->ormObjFromLocal->age) {
             case 1:
                 return '25-60';
@@ -186,7 +195,7 @@ class Quote
                 return '< 21';
             case 99:
                 return '> 60';
-            default :
+            default:
                 return $this->ormObjFromLocal->age;
         }
     }

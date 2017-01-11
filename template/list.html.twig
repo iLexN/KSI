@@ -41,8 +41,16 @@
                     <td>{{ quote.ormObjFromLocal.drivingExp |raw }}</td>
                     <td>{{ quote.ormObjFromLocal.insuranceType }}</td>
                     <td>{{ quote.ormObjFromLocal.ncd }}</td>
-                    <td>{{ quote.ormObjFromLocal.carMake }}</td>
-                    <td>{{ quote.ormObjFromLocal.carModel }}</td>
+                    <td
+                        {% if quote.isCustomCarMark() %}
+                        style="color:#0292e4;text-decoration: underline"
+                        {% endif %}
+                        >{{ quote.ormObjFromLocal.carMake }}</td>
+                    <td
+                        {% if not quote.isCustomCarModel() %}
+                        style="color:#0292e4;text-decoration: underline"
+                        {% endif %}
+                        >{{ quote.ormObjFromLocal.carModel }}</td>
                     <td>{{ quote.isPlans() }}</td>
                     <!--<td>{{ quote.isDuplicate() }}</td>-->
                     <td>{{ quote.hasOldRefID() | raw }}</td>
