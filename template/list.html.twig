@@ -41,8 +41,16 @@
                     <td>{{ quote.drivingExp |raw }}</td>
                     <td>{{ quote.insuranceType }}</td>
                     <td>{{ quote.ncd }}</td>
-                    <td>{{ quote.carMake }}</td>
-                    <td>{{ quote.carModel }}</td>
+                    <td
+                        {% if quote.isCustomCarMark() %}
+                        style="color:#0292e4;text-decoration: underline"
+                        {% endif %}
+                        >{{ quote.ormObjFromLocal.carMake }}</td>
+                    <td
+                        {% if not quote.isCustomCarModel() %}
+                        style="color:#0292e4;text-decoration: underline"
+                        {% endif %}
+                        >{{ quote.ormObjFromLocal.carModel }}</td>
                     <td>{{ quote.isPlans() }}</td>
                     <td>{{ quote.hasOldRefID() | raw }}</td>
                     <td>{{ quote.isPayButtonClick() | raw }}</td>

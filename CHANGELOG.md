@@ -1,4 +1,6 @@
 #### [Current]
+ * [e75c036](../../commit/e75c036) - __(2017-01-11 10:27:18 +0800)__ highlight custom make / model
+ * [eefc957](../../commit/eefc957) - __(2016-12-05 11:07:46 +0800)__ ci improve
  * [f9cec3a](../../commit/f9cec3a) - __(2016-12-05 10:45:24 +0800)__ ci improve
  * [8f99691](../../commit/8f99691) - __(2016-12-05 10:40:29 +0800)__ ci fix
  * [387a3e8](../../commit/387a3e8) - __(2016-12-05 10:37:01 +0800)__ ci fix
@@ -88,6 +90,10 @@
  * [9662233](../../commit/9662233) - __(2015-12-08 15:02:23 +0800)__ update code for - slim2 to slim3 - php5.3 to php 7
  * [1ded549](../../commit/1ded549) - __(2015-12-08 11:39:42 +0800)__ composer.json update package version
  * [ca6c3d7](../../commit/ca6c3d7) - __(2015-12-08 11:35:58 +0800)__ slim3 and PHP7
+
+#### [1.1.4]
+ * [30adcca](../../commit/30adcca) - __(2017-01-11 10:21:03 +0800)__ highlight custom make / model
+ * [c63d30b](../../commit/c63d30b) - __(2016-12-01 15:40:15 +0800)__ change log
 
 #### [1.1.3]
  * [d20f40b](../../commit/d20f40b) - __(2016-12-01 15:38:35 +0800)__ 2016-12-01 live version

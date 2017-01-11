@@ -78,6 +78,16 @@ class QuoteLayout implements \ArrayAccess
         }
     }
 
+    public function isCustomCarMark()
+    {
+        return (int)$this->ormObjFromLocal->carMake_key === 9999;
+    }
+
+    public function isCustomCarModel()
+    {
+        return is_numeric($this->ormObjFromLocal->carModel_key);
+    }
+
     /**
      * map age range code.
      *
