@@ -68,6 +68,25 @@ class QuoteLayout implements \ArrayAccess
      *
      * @return string Chi/Eng
      */
+    public function insTypeMap()
+    {
+        switch ($this->ormObjFromLocal->Policy_Details) {
+            case 'Comprehensive':
+                return 'Comprehensive';
+            case 'ThirdPartyFireAndTheft':
+                return 'Third Party + Fire and Theft';
+            case 'ThirdParty':
+                return 'Third Party';
+            default:
+
+        }
+    }
+
+    /**
+     * layout use function.
+     *
+     * @return string Chi/Eng
+     */
     public function langKeyMap()
     {
         switch ($this->ormObjFromLocal->lang) {

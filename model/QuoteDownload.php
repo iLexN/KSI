@@ -56,7 +56,7 @@ class QuoteDownload
     private function saveDownloadToKSI()
     {
         /* @var $yellowSheetOrm ORM */
-        $yellowSheetOrm = ORM::for_table('sales_inte_online', 'ksi')->create();
+        $yellowSheetOrm = ORM::for_table('ksi_sg_online', 'ksi')->create();
         $yellowSheetOrm->set($this->ormObjFromSource->as_array());
         $yellowSheetOrm->save();
     }
@@ -68,18 +68,6 @@ class QuoteDownload
     private function updateSourceDownload()
     {
         $this->ormObjFromSource->download = 1;
-
-        $this->ormObjFromSource->hkid_1 = '';
-        $this->ormObjFromSource->hkid_2 = '';
-        $this->ormObjFromSource->hkid_3 = '';
-
-        $this->ormObjFromSource->hkid_1_2 = '';
-        $this->ormObjFromSource->hkid_2_2 = '';
-        $this->ormObjFromSource->hkid_3_2 = '';
-
-        $this->ormObjFromSource->dob = '';
-        $this->ormObjFromSource->dob2 = '';
-
         $this->ormObjFromSource->save();
     }
 }

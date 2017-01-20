@@ -9,6 +9,10 @@ $autoloader->addPsr4('Ksi\\', __DIR__.'/model');
 
 include 'config.php';
 
+$config = include_once 'settings.php';
+$settings = $config['settings'];
+
+
 $logger = new \Monolog\Logger($settings['logger']['name']);
 $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['logger']['path'], \Monolog\Logger::DEBUG));
 $logger->pushHandler(new Monolog\Handler\NativeMailerHandler('alex@kwiksure.com','KSI download error log','alex@kwiksure.com'));

@@ -28,9 +28,9 @@ class User
         $user = ORM::for_table('ppib_staff', 'ksi')
                 ->select('Name')
                 ->where('Department', 'Sales')
-                ->where('Location', 'Hong Kong')
+                ->where('Location', 'Singapore')
                 ->where_any_is([
-                    ['Work_Group' => 'New Business'],
+                    ['Work_Group' => 'New Business(SG)'],
                     ['Work_Group' => 'Expert'],
                 ])
                 ->where('Expired_Date', '0001-01-01')

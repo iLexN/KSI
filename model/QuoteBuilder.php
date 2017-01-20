@@ -21,7 +21,7 @@ class QuoteBuilder
     public static function pushOneQuote($ar)
     {
         /* @var $oneQuoteOrm ORM */
-        $oneQuoteOrm = ORM::for_table('sales_inte_online', 'ksi')->
+        $oneQuoteOrm = ORM::for_table('ksi_sg_online', 'ksi')->
                 find_one($ar['id']);
 
         if ($oneQuoteOrm->status === '0') {
@@ -29,12 +29,12 @@ class QuoteBuilder
             $q->proccessDataToYellowSheet($ar['sale']);
 
             return [
-                    'email'  => $q->ormObjFromLocal->email,
+                    'email'  => $q->ormObjFromLocal->Email,
                     'rePush' => 0,
                 ];
         } else {
             return [
-                    'email'  => $oneQuoteOrm->email,
+                    'email'  => $oneQuoteOrm->Email,
                     'rePush' => 1,
                 ];
         }
@@ -47,11 +47,11 @@ class QuoteBuilder
      */
     public static function outstandingQuote()
     {
-        $manyQuote = ORM::for_table('sales_inte_online', 'ksi')->
+        $manyQuote = ORM::for_table('ksi_sg_online', 'ksi')->
                     where('status', 0);
         $total = $manyQuote->count();
 
-        $manyQuote2 = $manyQuote->limit(50)->order_by_asc('contactno')->order_by_asc('email')->order_by_asc('id')->find_many();
+        $manyQuote2 = $manyQuote->limit(50)->order_by_asc('Mobile')->order_by_asc('Email')->order_by_asc('id')->find_many();
 
         $quoteOrmAr = [];
         foreach ($manyQuote2 as $quoteOrm) {
@@ -80,7 +80,7 @@ class QuoteBuilder
                     order_by_asc('id');
 
         if ($t == 'a') {
-            $manyQuoteOrm->where_lt('create_datetime', date('Y-m-d H:i:s', strtotime('-5 minutes')));
+            $manyQuoteOrm->where_lt('create_datetime', date('Y-m-d H:i:s', strtotime('-1 minutes')));
         }
 
         $manyQuote = $manyQuoteOrm->find_many();
