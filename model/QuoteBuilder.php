@@ -29,12 +29,12 @@ class QuoteBuilder
             $q->proccessDataToYellowSheet($ar['sale']);
 
             return [
-                    'email'  => $q->ormObjFromLocal->Email,
+                    'email' => $q->ormObjFromLocal->Email,
                     'rePush' => 0,
                 ];
         } else {
             return [
-                    'email'  => $oneQuoteOrm->Email,
+                    'email' => $oneQuoteOrm->Email,
                     'rePush' => 1,
                 ];
         }

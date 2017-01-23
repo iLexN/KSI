@@ -28,12 +28,10 @@ class QuotePush
     {
         if ($sale !== 'Rubbish') {
             $this->dataToYellowSheet($sale);
-            $this->haveAdData(); // if have ad data than insert to ad table
             $this->updateLocalPushStatus(1);
             //$this->updatePushStatusToKSI(1);
         } else {
             $this->updateLocalPushStatus(2); // 2 for Rubbish
-            //$this->updatePushStatusToKSI(2);
         }
     }
 
@@ -44,9 +42,7 @@ class QuotePush
      */
     private function dataToYellowSheet($sale)
     {
-
         $master = ORM::for_table('ksi_sg_master', 'ksi')->create();
-
 
         $master->Responsibility_Name = $sale;
 
@@ -65,7 +61,7 @@ class QuotePush
         $master->first_name = $this->ormObjFromLocal->first_name;
         $master->title = $this->ormObjFromLocal->title;
         $master->Driver_One_Occupation = $this->ormObjFromLocal->Driver_One_Occupation;
-        $master->Driver_One_Driving_Experience = $this->driverExpKeyToText( $this->ormObjFromLocal->Driver_One_Driving_Experience);
+        $master->Driver_One_Driving_Experience = $this->driverExpKeyToText($this->ormObjFromLocal->Driver_One_Driving_Experience);
         $master->Driver_Two_Occupation = $this->ormObjFromLocal->Driver_Two_Occupation;
         $master->Driver_Two_Driving_Experience = $this->driverExpKeyToText($this->ormObjFromLocal->Driver_Two_Driving_Experience);
 
@@ -100,21 +96,6 @@ class QuotePush
         $motor->save();
     }
 
-    private function haveAdData()
-    {
-        if (
-                !empty($this->ormObjFromLocal->cmid) ||
-                !empty($this->ormObjFromLocal->dgid) ||
-                !empty($this->ormObjFromLocal->kwid) ||
-                !empty($this->ormObjFromLocal->netw) ||
-                !empty($this->ormObjFromLocal->dvce) ||
-                !empty($this->ormObjFromLocal->crtv) ||
-                !empty($this->ormObjFromLocal->adps)
-            ) {
-            $this->adDataToYellowSheet();
-        }
-    }
-
     /**
      * add ad data to ad table.
      */
@@ -142,20 +123,6 @@ class QuotePush
     {
         $this->ormObjFromLocal->status = $s;
         $this->ormObjFromLocal->save();
-    }
-
-    /**
-     * set null value when empty.
-     *
-     * @param string $v
-     */
-    private function emptyNullValue($v)
-    {
-        if (empty($v)) {
-            return;
-        }
-
-        return $v;
     }
 
     private function typeOfInsuranceKeyToText($key)

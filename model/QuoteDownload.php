@@ -34,21 +34,9 @@ class QuoteDownload
     public function processDownload($ormQuote)
     {
         $this->ormObjFromSource = $ormQuote;
-        //$this->saveDownload();
         $this->saveDownloadToKSI();
         $this->updateSourceDownload();
     }
-
-    /**
-     * Save the download data from source to local.
-
-    private function saveDownload()
-    {
-        $this->ormObjFromLocal = ORM::for_table('motor_quote', 'local')->create();
-        $this->ormObjFromLocal->set($this->ormObjFromSource->as_array());
-        $this->ormObjFromLocal->save();
-    }
-     * */
 
     /**
      * Save the download data from source to local.
