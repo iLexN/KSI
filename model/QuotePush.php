@@ -49,10 +49,10 @@ class QuotePush
 
 
         $master->Responsibility_Name = $sale;
-        $master->Date_of_Contact = date('Y-m-d');
+
         $master->Ownership = $this->ormObjFromLocal->Ownership;
         $master->Source = $this->ormObjFromLocal->Source;
-        $master->Date_of_Contact = $this->ormObjFromLocal->Date_of_Contact;
+        $master->Date_of_Contact = date('Y-m-d');
         $master->Policy_Status = $this->ormObjFromLocal->Policy_Status;
         $master->Email = $this->ormObjFromLocal->Email;
         $master->Mobile = $this->ormObjFromLocal->Mobile;
@@ -65,9 +65,9 @@ class QuotePush
         $master->first_name = $this->ormObjFromLocal->first_name;
         $master->title = $this->ormObjFromLocal->title;
         $master->Driver_One_Occupation = $this->ormObjFromLocal->Driver_One_Occupation;
-        $master->Driver_One_Driving_Experience = $this->ormObjFromLocal->Driver_One_Driving_Experience;
+        $master->Driver_One_Driving_Experience = $this->driverExpKeyToText( $this->ormObjFromLocal->Driver_One_Driving_Experience);
         $master->Driver_Two_Occupation = $this->ormObjFromLocal->Driver_Two_Occupation;
-        $master->Driver_Two_Driving_Experience = $this->ormObjFromLocal->Driver_Two_Driving_Experience;
+        $master->Driver_Two_Driving_Experience = $this->driverExpKeyToText($this->ormObjFromLocal->Driver_Two_Driving_Experience);
 
         $master->client_language = 'en';
 
@@ -169,6 +169,22 @@ class QuotePush
                 return 'Third Party';
             default:
 
+        }
+    }
+
+    private function driverExpKeyToText($k)
+    {
+        switch ($k) {
+            case 'lt1':
+                return '"< 1 Year';
+            case '15-20':
+                return '10 - 15 Years';
+            case 'gt20':
+                return '+20 Years';
+            case '1':
+                return '1 Year';
+            default:
+                return $this->ormObjFromLocal->Driver_One_Driving_Experience.' Years';
         }
     }
 }

@@ -36,7 +36,7 @@ $container['logger'] = function (ContainerInterface $c) {
     $settings = $c->get('settings');
     $logger = new \Monolog\Logger($settings['logger']['name']);
     $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['logger']['path'], \Monolog\Logger::DEBUG));
-    $logger->pushHandler(new Monolog\Handler\NativeMailerHandler('alex@kwiksure.com','KSI error log','alex@kwiksure.com'));
+    $logger->pushHandler(new Monolog\Handler\NativeMailerHandler('alex@kwiksure.com','SG-KSI error log','alex@kwiksure.com'));
 
     return $logger;
 };

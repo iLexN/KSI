@@ -25,14 +25,20 @@ class User
      */
     public static function salesList()
     {
+//        $user = ORM::for_table('ppib_staff', 'ksi')
+//                ->select('Name')
+//                ->where('Department', 'Sales')
+//                ->where('Location', 'Singapore')
+//                ->where_any_is([
+//                    ['Work_Group' => 'New Business(SG)'],
+//                    ['Work_Group' => 'Expert'],
+//                ])
+//                ->where('Expired_Date', '0001-01-01')
+//                ->order_by_asc('Name')
+//                ->find_array();
         $user = ORM::for_table('ppib_staff', 'ksi')
                 ->select('Name')
-                ->where('Department', 'Sales')
-                ->where('Location', 'Singapore')
-                ->where_any_is([
-                    ['Work_Group' => 'New Business(SG)'],
-                    ['Work_Group' => 'Expert'],
-                ])
+                ->where('Region', 'SG')
                 ->where('Expired_Date', '0001-01-01')
                 ->order_by_asc('Name')
                 ->find_array();
