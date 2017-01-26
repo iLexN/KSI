@@ -25,6 +25,8 @@
                 <td>Driving Exp</td>
                 <td>Make</td>
                 <td>Model</td>
+                <td>YOR</td>
+                <td>Effective date</td>
                 
                 
                 <td>Sale</td>
@@ -41,6 +43,8 @@
                     <td>{{ quote.showDriverExp() }}</td>
                     <td>{{ quote.Make }}</td>
                     <td>{{ quote.Model }}</td>
+                    <td>{{ quote.m1_year_reg }}</td>
+                    <td>{{ quote.m1_effective_date }}</td>
                     
                     <td><select name="quote[{{ quote.id }}][sale]">{% include 'chunk/salesSelectOption.html.twig' %}</select> </td>
                     <td><input type="submit" name="pass[{{ quote.id }}]" value="Pass"></td>

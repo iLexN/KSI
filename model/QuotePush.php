@@ -64,9 +64,7 @@ class QuotePush
         $master->Driver_One_Driving_Experience = $this->driverExpKeyToText($this->ormObjFromLocal->Driver_One_Driving_Experience);
         $master->Driver_Two_Occupation = $this->ormObjFromLocal->Driver_Two_Occupation;
         $master->Driver_Two_Driving_Experience = $this->driverExpKeyToText($this->ormObjFromLocal->Driver_Two_Driving_Experience);
-
         $master->client_language = 'en';
-
         $master->save();
 
         $insertID = $master->id();
@@ -79,7 +77,7 @@ class QuotePush
         $motor->m1_p_id_type = $this->ormObjFromLocal->m1_p_id_type;
         $motor->m1_p_id_no = $this->ormObjFromLocal->m1_p_id_no;
         $motor->m1_p_marital = $this->ormObjFromLocal->m1_p_marital;
-        $motor->m1_p_dob = $this->ormObjFromLocal->m1_p_dob;
+        $motor->m1_p_dob = $this->emptyNullValue($this->ormObjFromLocal->m1_p_dob);
         $motor->m1_p_motoring_offences = $this->ormObjFromLocal->m1_p_motoring_offences;
         $motor->m1_p_demerit_points = $this->ormObjFromLocal->m1_p_demerit_points;
         $motor->m1_p_ncd = $this->ormObjFromLocal->m1_p_ncd;
@@ -89,11 +87,15 @@ class QuotePush
         $motor->m1_s_id_no = $this->ormObjFromLocal->m1_s_id_no;
         $motor->m1_s_title = $this->ormObjFromLocal->m1_s_title;
         $motor->m1_s_marital = $this->ormObjFromLocal->m1_s_marital;
-        $motor->m1_s_dob = $this->ormObjFromLocal->m1_s_dob;
+        $motor->m1_s_dob = $this->emptyNullValue($this->ormObjFromLocal->m1_s_dob) ;
         $motor->m1_s_motoring_offences = $this->ormObjFromLocal->m1_s_motoring_offences;
         $motor->m1_s_demerit_points = $this->ormObjFromLocal->m1_s_demerit_points;
-
         $motor->save();
+
+        $quote = ORM::for_table('ksi_sg_quote', 'ksi')->create();
+        $quote->ksi_no = $insertID;
+        $quote->save();
+
     }
 
     /**
@@ -153,5 +155,18 @@ class QuotePush
             default:
                 return $this->ormObjFromLocal->Driver_One_Driving_Experience.' Years';
         }
+    }
+
+    /**
+     * set null value when empty.
+     *
+     * @param string $v
+     */
+    private function emptyNullValue($v)
+    {
+        if (empty($v)) {
+            return NULL;
+        }
+        return $v;
     }
 }

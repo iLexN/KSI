@@ -1,5 +1,12 @@
 #### [Current]
- * [e75c036](../../commit/e75c036) - __(2017-01-11 10:27:18 +0800)__ highlight custom make / model
+ * [e4c81c1](../../commit/e4c81c1) - __(2017-01-26 17:27:23 +0800)__ ken comments fix
+ * [11e88b0](../../commit/11e88b0) - __(2017-01-23 14:22:09 +0800)__ ci fix
+ * [ee7de97](../../commit/ee7de97) - __(2017-01-23 10:13:56 +0800)__ update sales list , driver exp text
+ * [e6c5789](../../commit/e6c5789) - __(2017-01-20 18:12:40 +0800)__ sg version init
+ * [bd5128a](../../commit/bd5128a) - __(2017-01-11 10:27:47 +0800)__ highlight custom make / model
+
+#### [2.0.3]
+ * [bd5128a](../../commit/bd5128a) - __(2017-01-11 10:27:47 +0800)__ highlight custom make / model
  * [eefc957](../../commit/eefc957) - __(2016-12-05 11:07:46 +0800)__ ci improve
  * [f9cec3a](../../commit/f9cec3a) - __(2016-12-05 10:45:24 +0800)__ ci improve
  * [8f99691](../../commit/8f99691) - __(2016-12-05 10:40:29 +0800)__ ci fix
