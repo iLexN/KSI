@@ -65,9 +65,9 @@ class QuoteLayout implements \ArrayAccess
     {
         switch ($this->ormObjFromLocal->Driver_One_Driving_Experience) {
             case 'lt1':
-                return '"< 1 Year';
+                return '< 1 Year';
             case '15-20':
-                return '10 - 15 Years';
+                return '15 - 20 Years';
             case 'gt20':
                 return '+20 Years';
             case '1':

@@ -65,6 +65,10 @@ class QuotePush
         $master->Driver_Two_Occupation = $this->ormObjFromLocal->Driver_Two_Occupation;
         $master->Driver_Two_Driving_Experience = $this->driverExpKeyToText($this->ormObjFromLocal->Driver_Two_Driving_Experience);
         $master->client_language = 'en';
+
+        $master->Driver_One_age = $this->calAge($this->ormObjFromLocal->m1_p_dob);
+        $master->Driver_Two_age = $this->calAge($this->ormObjFromLocal->m1_s_dob);
+
         $master->save();
 
         $insertID = $master->id();
@@ -87,7 +91,7 @@ class QuotePush
         $motor->m1_s_id_no = $this->ormObjFromLocal->m1_s_id_no;
         $motor->m1_s_title = $this->ormObjFromLocal->m1_s_title;
         $motor->m1_s_marital = $this->ormObjFromLocal->m1_s_marital;
-        $motor->m1_s_dob = $this->emptyNullValue($this->ormObjFromLocal->m1_s_dob) ;
+        $motor->m1_s_dob = $this->emptyNullValue($this->ormObjFromLocal->m1_s_dob);
         $motor->m1_s_motoring_offences = $this->ormObjFromLocal->m1_s_motoring_offences;
         $motor->m1_s_demerit_points = $this->ormObjFromLocal->m1_s_demerit_points;
         $motor->save();
@@ -95,7 +99,6 @@ class QuotePush
         $quote = ORM::for_table('ksi_sg_quote', 'ksi')->create();
         $quote->ksi_no = $insertID;
         $quote->save();
-
     }
 
     /**
@@ -145,15 +148,15 @@ class QuotePush
     {
         switch ($k) {
             case 'lt1':
-                return '"< 1 Year';
+                return '< 1 Year';
             case '15-20':
-                return '10 - 15 Years';
+                return '15 - 20 Years';
             case 'gt20':
                 return '+20 Years';
             case '1':
                 return '1 Year';
             default:
-                return $this->ormObjFromLocal->Driver_One_Driving_Experience.' Years';
+                return $this->emptyNullValue($k) ? $k.' Years' : null;
         }
     }
 
@@ -165,8 +168,28 @@ class QuotePush
     private function emptyNullValue($v)
     {
         if (empty($v)) {
-            return NULL;
+            return null;
         }
+
         return $v;
+    }
+
+    private function calAge($dob)
+    { // yyyy-mm-dd
+
+        if ($dob == '0000-00-00' || $this->emptyNullValue($dob) === null) {
+            return null;
+        }
+
+        $from = \DateTime::createFromFormat('Y-m-d', $dob);
+        $to = new \DateTime('today');
+
+        if ($from > $to) {
+            return 0;
+        }
+
+        $age = $from->diff($to)->y;
+
+        return $age;
     }
 }
