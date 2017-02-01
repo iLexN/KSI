@@ -11,7 +11,7 @@
         <header class="listHeader">
             <a href="{{ path_for('logout') }}" class="logoutBtn">Logout</a>
             <a href="download" class="jsDownloadBtn logoutBtn">Download</a>
-            <h1>List of Quotation <span>Total : {{ numberListedQuote }} / {{ totalQuote }} @ {{ lastUpdateDateTime }}</span></h1>
+            <h1><b style="color:#E92F32">SG</b> - List of Quotation <span>Total : {{ numberListedQuote }} / {{ totalQuote }} @ {{ lastUpdateDateTime }}</span></h1>
         </header>
         
         <form action="{{ path_for('pass') }}" method="POST">
