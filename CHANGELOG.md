@@ -1,5 +1,8 @@
 #### [Current]
- * [e4c81c1](../../commit/e4c81c1) - __(2017-01-26 17:27:23 +0800)__ ken comments fix
+ * [f2a5c1d](../../commit/f2a5c1d) - __(2017-02-01 16:49:36 +0800)__ add 'SG' - text
+ * [6e7712d](../../commit/6e7712d) - __(2017-01-27 15:28:48 +0800)__ add cal age , fix driver exp
+ * [3cf9eae](../../commit/3cf9eae) - __(2017-01-27 14:17:58 +0800)__ change the flow , update source than save.
+ * [78ad4df](../../commit/78ad4df) - __(2017-01-26 17:28:16 +0800)__ ken comments fix
  * [11e88b0](../../commit/11e88b0) - __(2017-01-23 14:22:09 +0800)__ ci fix
  * [ee7de97](../../commit/ee7de97) - __(2017-01-23 10:13:56 +0800)__ update sales list , driver exp text
  * [e6c5789](../../commit/e6c5789) - __(2017-01-20 18:12:40 +0800)__ sg version init
