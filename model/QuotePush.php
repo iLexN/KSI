@@ -103,7 +103,7 @@ class QuotePush
 
     /**
      * add ad data to ad table.
-     */
+
     private function adDataToYellowSheet()
     {
         $yellowSheetOrm = ORM::for_table('sales_inte_online_inquiries', 'ksi')->create();
@@ -117,7 +117,7 @@ class QuotePush
         $yellowSheetOrm->crtv = $this->ormObjFromLocal->crtv;
         $yellowSheetOrm->adps = $this->ormObjFromLocal->adps;
         $yellowSheetOrm->save();
-    }
+    }*/
 
     /**
      * prog flow for pushing.
