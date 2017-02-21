@@ -98,6 +98,8 @@ class QuoteLayout implements \ArrayAccess
         switch ($this->ormObjFromLocal->age) {
             case 1:
                 return '25-60';
+            case 2:
+                return '30–60';
             case 88:
                 return '< 21';
             case 99:
