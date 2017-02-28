@@ -27,7 +27,7 @@ class User
     {
         $user = ORM::for_table('ppib_staff', 'ksi')
                 ->select('Name')
-                ->where('Region', 'SG')
+                ->where('Location', 'Singapore')
                 ->where('Expired_Date', '0001-01-01')
                 ->order_by_asc('Name')
                 ->find_array();
