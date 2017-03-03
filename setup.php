@@ -2,25 +2,7 @@
 
 use Interop\Container\ContainerInterface;
 
-$settings = [
-    'settings' => [
-        // View settings
-        'view' => [
-            'template_path' => __DIR__.'/template',
-            'twig'          => [
-                'cache'       => __DIR__.'/cache',
-                'debug'       => true,
-                'auto_reload' => true,
-            ],
-        ],
-        // monolog settings
-        'logger' => [
-            'name' => 'app',
-            'path' => __DIR__.'/logs/'.date('Y-m-d').'.log',
-        ],
-        'displayErrorDetails' => true,
-    ],
-];
+$settings = include_once 'settings.php';
 
 $app = new \Slim\App($settings);
 
