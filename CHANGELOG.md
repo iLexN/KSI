@@ -1,5 +1,27 @@
 #### [Current]
- * [e75c036](../../commit/e75c036) - __(2017-01-11 10:27:18 +0800)__ highlight custom make / model
+ * [6602964](../../commit/6602964) - __(2017-03-06 17:57:14 +0800)__ add planName to db
+ * [7e579bf](../../commit/7e579bf) - __(2017-03-06 10:40:31 +0800)__ add working hour download time 5min , non working hour download time 60min
+ * [700eea9](../../commit/700eea9) - __(2017-03-03 12:25:23 +0800)__ fix for ken test
+
+#### [2.0.5-sg]
+ * [4367e74](../../commit/4367e74) - __(2017-02-28 10:06:01 +0800)__ user sql change to location
+
+#### [2.0.4-sg]
+ * [aae24bc](../../commit/aae24bc) - __(2017-02-01 17:50:13 +0800)__ comment out adDatatoyellowsheet
+ * [992652e](../../commit/992652e) - __(2017-02-01 16:50:45 +0800)__ changelog
+ * [f2a5c1d](../../commit/f2a5c1d) - __(2017-02-01 16:49:36 +0800)__ add 'SG' - text
+ * [6e7712d](../../commit/6e7712d) - __(2017-01-27 15:28:48 +0800)__ add cal age , fix driver exp
+ * [3cf9eae](../../commit/3cf9eae) - __(2017-01-27 14:17:58 +0800)__ change the flow , update source than save.
+ * [78ad4df](../../commit/78ad4df) - __(2017-01-26 17:28:16 +0800)__ ken comments fix
+ * [11e88b0](../../commit/11e88b0) - __(2017-01-23 14:22:09 +0800)__ ci fix
+ * [ee7de97](../../commit/ee7de97) - __(2017-01-23 10:13:56 +0800)__ update sales list , driver exp text
+ * [e6c5789](../../commit/e6c5789) - __(2017-01-20 18:12:40 +0800)__ sg version init
+
+#### [2.0.4]
+ * [2296f63](../../commit/2296f63) - __(2017-02-01 16:56:59 +0800)__ add 'HK' text
+
+#### [2.0.3]
+ * [bd5128a](../../commit/bd5128a) - __(2017-01-11 10:27:47 +0800)__ highlight custom make / model
  * [eefc957](../../commit/eefc957) - __(2016-12-05 11:07:46 +0800)__ ci improve
  * [f9cec3a](../../commit/f9cec3a) - __(2016-12-05 10:45:24 +0800)__ ci improve
  * [8f99691](../../commit/8f99691) - __(2016-12-05 10:40:29 +0800)__ ci fix
@@ -90,6 +112,9 @@
  * [9662233](../../commit/9662233) - __(2015-12-08 15:02:23 +0800)__ update code for - slim2 to slim3 - php5.3 to php 7
  * [1ded549](../../commit/1ded549) - __(2015-12-08 11:39:42 +0800)__ composer.json update package version
  * [ca6c3d7](../../commit/ca6c3d7) - __(2015-12-08 11:35:58 +0800)__ slim3 and PHP7
+
+#### [1.1.5]
+ * [807a854](../../commit/807a854) - __(2017-02-01 16:55:52 +0800)__ add 'HK' text
 
 #### [1.1.4]
  * [30adcca](../../commit/30adcca) - __(2017-01-11 10:21:03 +0800)__ highlight custom make / model
