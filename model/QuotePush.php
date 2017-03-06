@@ -103,6 +103,7 @@ class QuotePush
             $yellowSheetOrm->Quote_One_MIB = $planArray[0]['mib'];
             $yellowSheetOrm->Quote_One_Gross_Premium = $planArray[0]['gross'];
             $yellowSheetOrm->Additional_Plan = implode(',', $planArray[0]['subPlanName']);
+            //todo add planname
         }
 
         if (isset($planArray[1])) {
@@ -128,6 +129,7 @@ class QuotePush
             $yellowSheetOrm->Quote_Two_Commission = $planArray[1]['commission'];
             $yellowSheetOrm->Quote_Two_MIB = $planArray[1]['mib'];
             $yellowSheetOrm->Quote_Two_Gross_Premium = $planArray[1]['gross'];
+            //todo add planname
         }
 
         $yellowSheetOrm->Start_Date = $this->dateFormate($this->ormObjFromLocal->policy_start_date);

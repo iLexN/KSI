@@ -66,7 +66,7 @@ $app->get('/list', function (ServerRequestInterface $req, ResponseInterface $res
                 'quoteAr'           => $quoteAr,
                 'salesList'         => $salesList,
                 'flash'             => $this->flash->getMessages(),
-                //'lastUpdateDateTime'=>date("Y-m-d H:i", filemtime('download_log/'. date("Ymd") . '.logs'))
+                'lastUpdateDateTime'=>date("Y-m-d H:i", filemtime('download_log/'. date("Ymd") . '.logs'))
     ];
 
     return $this->view->render($res, 'list.html.twig',

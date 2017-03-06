@@ -73,14 +73,14 @@ class QuoteBuilder
      *
      * @return array downloaded Quote ID
      */
-    public static function downloadQuote($t = 'a')
+    public static function downloadQuote($t = 'a' , $min = '5')
     {
         $manyQuoteOrm = ORM::for_table('motor_quote', 'source')->
                     where('download', 0)->
                     order_by_asc('id');
 
         if ($t == 'a') {
-            $manyQuoteOrm->where_lt('create_datetime', date('Y-m-d H:i:s', strtotime('-5 minutes')));
+            $manyQuoteOrm->where_lt('create_datetime', date('Y-m-d H:i:s', strtotime('-'.$min.' minutes')));
         }
 
         $manyQuote = $manyQuoteOrm->find_many();
