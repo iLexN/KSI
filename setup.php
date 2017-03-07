@@ -13,7 +13,7 @@ $container = $app->getContainer();
 // -----------------------------------------------------------------------------
 
 // Twig
-$container['view'] = function (ContainerInterface $c) {
+$container['view'] = function(ContainerInterface $c) {
     $settings = $c->get('settings');
     $view = new \Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
     // Add extensions
@@ -24,7 +24,7 @@ $container['view'] = function (ContainerInterface $c) {
 };
 
 // Flash messages
-$container['flash'] = function () {
+$container['flash'] = function() {
     return new \Slim\Flash\Messages();
 };
 
@@ -32,7 +32,7 @@ $container['flash'] = function () {
 // Service factories
 // -----------------------------------------------------------------------------
 // monolog
-$container['logger'] = function (ContainerInterface $c) {
+$container['logger'] = function(ContainerInterface $c) {
     $settings = $c->get('settings');
     $logger = new \Monolog\Logger($settings['logger']['name']);
     $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['logger']['path'], \Monolog\Logger::DEBUG));
