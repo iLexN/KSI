@@ -1,5 +1,6 @@
 #### [Current]
- * [6602964](../../commit/6602964) - __(2017-03-06 17:57:14 +0800)__ add planName to db
+ * [ad69eff](../../commit/ad69eff) - __(2017-03-07 14:33:45 +0800)__ ci fix . move function to lib/helper.php
+ * [7133afa](../../commit/7133afa) - __(2017-03-06 17:58:56 +0800)__ add planName to db
  * [7e579bf](../../commit/7e579bf) - __(2017-03-06 10:40:31 +0800)__ add working hour download time 5min , non working hour download time 60min
  * [700eea9](../../commit/700eea9) - __(2017-03-03 12:25:23 +0800)__ fix for ken test
 
