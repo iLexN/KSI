@@ -42,6 +42,8 @@ class QuotePush
      */
     private function dataToYellowSheet($sale)
     {
+        // add any db field, need add to rackspace and yellowsheet download table ie.ksi_sg_online
+
         $master = ORM::for_table('ksi_sg_master', 'ksi')->create();
 
         $master->Responsibility_Name = $sale;
@@ -94,6 +96,7 @@ class QuotePush
         $motor->m1_s_dob = $this->emptyNullValue($this->ormObjFromLocal->m1_s_dob);
         $motor->m1_s_motoring_offences = $this->ormObjFromLocal->m1_s_motoring_offences;
         $motor->m1_s_demerit_points = $this->ormObjFromLocal->m1_s_demerit_points;
+        $motor->m1_vehicle_no = $this->ormObjFromLocal->m1_vehicle_no;
         $motor->save();
 
         $quote = ORM::for_table('ksi_sg_quote', 'ksi')->create();
