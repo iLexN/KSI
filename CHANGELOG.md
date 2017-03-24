@@ -1,4 +1,20 @@
 #### [Current]
+ * [c7d6c16](../../commit/c7d6c16) - __(2017-03-24 11:30:05 +0800)__ add db field m1_vehicle_no
+
+#### [2.1.0]
+ * [d2bc6a0](../../commit/d2bc6a0) - __(2017-03-07 14:34:12 +0800)__ ci fix . move function to lib/helper.php
+ * [7133afa](../../commit/7133afa) - __(2017-03-06 17:58:56 +0800)__ add planName to db
+ * [7e579bf](../../commit/7e579bf) - __(2017-03-06 10:40:31 +0800)__ add working hour download time 5min , non working hour download time 60min
+ * [700eea9](../../commit/700eea9) - __(2017-03-03 12:25:23 +0800)__ fix for ken test
+ * [7b9e81e](../../commit/7b9e81e) - __(2017-02-21 11:37:11 +0800)__ add age group 2
+ * [2296f63](../../commit/2296f63) - __(2017-02-01 16:56:59 +0800)__ add 'HK' text
+
+#### [2.0.5-sg]
+ * [4367e74](../../commit/4367e74) - __(2017-02-28 10:06:01 +0800)__ user sql change to location
+
+#### [2.0.4-sg]
+ * [aae24bc](../../commit/aae24bc) - __(2017-02-01 17:50:13 +0800)__ comment out adDatatoyellowsheet
+ * [992652e](../../commit/992652e) - __(2017-02-01 16:50:45 +0800)__ changelog
  * [f2a5c1d](../../commit/f2a5c1d) - __(2017-02-01 16:49:36 +0800)__ add 'SG' - text
  * [6e7712d](../../commit/6e7712d) - __(2017-01-27 15:28:48 +0800)__ add cal age , fix driver exp
  * [3cf9eae](../../commit/3cf9eae) - __(2017-01-27 14:17:58 +0800)__ change the flow , update source than save.
@@ -6,7 +22,9 @@
  * [11e88b0](../../commit/11e88b0) - __(2017-01-23 14:22:09 +0800)__ ci fix
  * [ee7de97](../../commit/ee7de97) - __(2017-01-23 10:13:56 +0800)__ update sales list , driver exp text
  * [e6c5789](../../commit/e6c5789) - __(2017-01-20 18:12:40 +0800)__ sg version init
- * [bd5128a](../../commit/bd5128a) - __(2017-01-11 10:27:47 +0800)__ highlight custom make / model
+
+#### [2.0.4]
+ * [2296f63](../../commit/2296f63) - __(2017-02-01 16:56:59 +0800)__ add 'HK' text
 
 #### [2.0.3]
  * [bd5128a](../../commit/bd5128a) - __(2017-01-11 10:27:47 +0800)__ highlight custom make / model
@@ -100,6 +118,9 @@
  * [9662233](../../commit/9662233) - __(2015-12-08 15:02:23 +0800)__ update code for - slim2 to slim3 - php5.3 to php 7
  * [1ded549](../../commit/1ded549) - __(2015-12-08 11:39:42 +0800)__ composer.json update package version
  * [ca6c3d7](../../commit/ca6c3d7) - __(2015-12-08 11:35:58 +0800)__ slim3 and PHP7
+
+#### [1.1.5]
+ * [807a854](../../commit/807a854) - __(2017-02-01 16:55:52 +0800)__ add 'HK' text
 
 #### [1.1.4]
  * [30adcca](../../commit/30adcca) - __(2017-01-11 10:21:03 +0800)__ highlight custom make / model
