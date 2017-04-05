@@ -76,7 +76,7 @@ class Defterdar
     public function markDownGenerator()
     {
         $this->output = preg_replace('/^(.*?)\t/m', ' * [$1](../../commit/$1)', $this->output);
-        $this->output = preg_replace('/#(\d+)/m', ' [#$1](../../issues/$1)', $this->output);
+        $this->output = preg_replace('/#(\d+)/m', '[#$1](../../issues/$1)', $this->output);
         $this->output = preg_replace('/\)(.*?)\t/m', ') - __($1)__ ', $this->output);
 
         return $this;
