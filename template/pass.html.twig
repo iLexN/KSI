@@ -12,6 +12,18 @@
         {% endif %}
 
         <h2><b style="color:#E92F32">HK</b> - Below is Pushed Result</h2>
+        
+        <h3>Sales Summary</h3>
+        <ul>
+            {% for sale, count  in saleArray %}
+            <li>{{ sale }} - {{ count }}
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <hr />
+        
+        <h3>Visitor Summary</h3>
         <ul>
             {% for email in emailArray %}
             <li>{{ email.email }} 

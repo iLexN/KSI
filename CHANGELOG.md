@@ -1,8 +1,21 @@
 #### [Current]
- * [ad69eff](../../commit/ad69eff) - __(2017-03-07 14:33:45 +0800)__ ci fix . move function to lib/helper.php
+ * [057f74a](../../commit/057f74a) - __(2017-04-21 09:44:40 +0800)__ add sales summary
+ * [3de3ea6](../../commit/3de3ea6) - __(2017-04-05 12:15:59 +0800)__ change log format change , fix format
+ * [2b71b97](../../commit/2b71b97) - __(2017-04-05 12:13:35 +0800)__ change log format change
+ * [d2bc6a0](../../commit/d2bc6a0) - __(2017-03-07 14:34:12 +0800)__ ci fix . move function to lib/helper.php
+
+#### [2.1.0]
+ * [d2bc6a0](../../commit/d2bc6a0) - __(2017-03-07 14:34:12 +0800)__ ci fix . move function to lib/helper.php
  * [7133afa](../../commit/7133afa) - __(2017-03-06 17:58:56 +0800)__ add planName to db
  * [7e579bf](../../commit/7e579bf) - __(2017-03-06 10:40:31 +0800)__ add working hour download time 5min , non working hour download time 60min
  * [700eea9](../../commit/700eea9) - __(2017-03-03 12:25:23 +0800)__ fix for ken test
+ * [7b9e81e](../../commit/7b9e81e) - __(2017-02-21 11:37:11 +0800)__ add age group 2
+ * [2296f63](../../commit/2296f63) - __(2017-02-01 16:56:59 +0800)__ add 'HK' text
+
+#### [2.0.6-sg]
+ * [759a999](../../commit/759a999) - __(2017-03-24 14:12:40 +0800)__ 2.0.6-sg
+ * [c7d6c16](../../commit/c7d6c16) - __(2017-03-24 11:30:05 +0800)__ add db field m1_vehicle_no
+ * [7cd674d](../../commit/7cd674d) - __(2017-03-06 10:41:40 +0800)__ add back last update download time
 
 #### [2.0.5-sg]
  * [4367e74](../../commit/4367e74) - __(2017-02-28 10:06:01 +0800)__ user sql change to location
@@ -61,28 +74,28 @@
  * [a096e41](../../commit/a096e41) - __(2016-03-31 16:57:50 +0800)__ map age 1 / 88 / 99
  * [1bfa9c1](../../commit/1bfa9c1) - __(2016-03-31 15:00:05 +0800)__ cs fix?
  * [178f0cc](../../commit/178f0cc) - __(2016-03-10 17:23:39 +0800)__ change use KSI db and table 2
- * [42e4859](../../commit/42e4859) - __(2016-03-10 17:20:48 +0800)__ Merge pull request  [#1](../../issues/1)1 from iLexN/analysis-XWN3M5
+ * [42e4859](../../commit/42e4859) - __(2016-03-10 17:20:48 +0800)__ Merge pull request [#11](../../issues/11) from iLexN/analysis-XWN3M5
  * [1a929e2](../../commit/1a929e2) - __(2016-03-10 04:20:40 -0500)__ Applied fixes from StyleCI
  * [dd10fe5](../../commit/dd10fe5) - __(2016-03-10 17:01:57 +0800)__ change use KSI db and table
  * [5a0b39f](../../commit/5a0b39f) - __(2016-02-16 11:12:51 +0800)__ update package version
  * [be7a00e](../../commit/be7a00e) - __(2016-02-03 17:28:13 +0800)__ cs fix
  * [3d2059a](../../commit/3d2059a) - __(2016-02-03 17:09:18 +0800)__ update status to ksi
  * [5228fc6](../../commit/5228fc6) - __(2016-01-26 11:28:04 +0800)__ sensiolabs fix
- * [29a80a2](../../commit/29a80a2) - __(2016-01-26 11:26:40 +0800)__ Merge pull request  [#1](../../issues/1)0 from iLexN/analysis-8KZoxQ
+ * [29a80a2](../../commit/29a80a2) - __(2016-01-26 11:26:40 +0800)__ Merge pull request [#10](../../issues/10) from iLexN/analysis-8KZoxQ
  * [081a8ec](../../commit/081a8ec) - __(2016-01-25 22:23:15 -0500)__ Applied fixes from StyleCI
  * [af0cae0](../../commit/af0cae0) - __(2016-01-25 15:00:37 +0800)__ cs fix
  * [9fd3ea7](../../commit/9fd3ea7) - __(2016-01-13 17:53:44 +0800)__ add download to ksi , for later data development
- * [3f38abc](../../commit/3f38abc) - __(2016-01-08 16:06:59 +0800)__ Merge pull request  [#9](../../issues/9) from iLexN/analysis-XVM6Z8
+ * [3f38abc](../../commit/3f38abc) - __(2016-01-08 16:06:59 +0800)__ Merge pull request [#9](../../issues/9) from iLexN/analysis-XVM6Z8
  * [5e79d13](../../commit/5e79d13) - __(2016-01-08 03:02:57 -0500)__ Applied fixes from StyleCI
  * [6505657](../../commit/6505657) - __(2016-01-08 14:48:25 +0800)__ QuoteLayout class implements ArrayAccess , improve the layout more easy
  * [65a9775](../../commit/65a9775) - __(2016-01-08 14:48:06 +0800)__ QuoteLayout class implements ArrayAccess , improve the layout more easy
  * [47da110](../../commit/47da110) - __(2016-01-08 11:21:21 +0800)__ quote download take out unuse method
- * [0a31519](../../commit/0a31519) - __(2016-01-08 11:03:50 +0800)__ Merge pull request  [#7](../../issues/7) from iLexN/break-down-quote-class
- * [3d5bf4e](../../commit/3d5bf4e) - __(2016-01-08 11:01:11 +0800)__ Merge pull request  [#8](../../issues/8) from iLexN/analysis-8LdNn8
+ * [0a31519](../../commit/0a31519) - __(2016-01-08 11:03:50 +0800)__ Merge pull request [#7](../../issues/7) from iLexN/break-down-quote-class
+ * [3d5bf4e](../../commit/3d5bf4e) - __(2016-01-08 11:01:11 +0800)__ Merge pull request [#8](../../issues/8) from iLexN/analysis-8LdNn8
  * [9fa648a](../../commit/9fa648a) - __(2016-01-07 22:00:13 -0500)__ Applied fixes from StyleCI
  * [8cc49ec](../../commit/8cc49ec) - __(2016-01-08 10:52:50 +0800)__ quote -> break down 3 class
  * [b94cb31](../../commit/b94cb31) - __(2016-01-08 10:33:00 +0800)__ line fix
- * [4c57353](../../commit/4c57353) - __(2016-01-07 17:58:42 +0800)__ Merge pull request  [#6](../../issues/6) from iLexN/analysis-qxZ308
+ * [4c57353](../../commit/4c57353) - __(2016-01-07 17:58:42 +0800)__ Merge pull request [#6](../../issues/6) from iLexN/analysis-qxZ308
  * [f728149](../../commit/f728149) - __(2016-01-07 04:58:20 -0500)__ Applied fixes from StyleCI
  * [c5d8e4d](../../commit/c5d8e4d) - __(2016-01-07 17:56:54 +0800)__ line fix
  * [4a47fc6](../../commit/4a47fc6) - __(2016-01-07 17:41:50 +0800)__ static method from Quote to QuoteBuilder
@@ -91,15 +104,15 @@
  * [28ae0ed](../../commit/28ae0ed) - __(2016-01-06 17:56:02 +0800)__ code improve 2
  * [778cdd6](../../commit/778cdd6) - __(2016-01-06 17:55:29 +0800)__ Revert "add .lock"
  * [fe45b08](../../commit/fe45b08) - __(2016-01-06 17:54:47 +0800)__ add .lock
- * [5e6bcb5](../../commit/5e6bcb5) - __(2016-01-06 17:39:46 +0800)__ Merge pull request  [#4](../../issues/4) from iLexN/analysis-zGBJ2q
+ * [5e6bcb5](../../commit/5e6bcb5) - __(2016-01-06 17:39:46 +0800)__ Merge pull request [#4](../../issues/4) from iLexN/analysis-zGBJ2q
  * [5878b9f](../../commit/5878b9f) - __(2016-01-06 04:39:24 -0500)__ Applied fixes from StyleCI
  * [f8230ff](../../commit/f8230ff) - __(2016-01-06 17:36:06 +0800)__ code improve
  * [d5222d5](../../commit/d5222d5) - __(2016-01-06 12:52:22 +0800)__ style fix
  * [ea95807](../../commit/ea95807) - __(2016-01-06 12:36:16 +0800)__ Issues fix
- * [169ed23](../../commit/169ed23) - __(2016-01-05 14:55:02 +0800)__ Merge pull request  [#2](../../issues/2) from iLexN/analysis-87veEz
+ * [169ed23](../../commit/169ed23) - __(2016-01-05 14:55:02 +0800)__ Merge pull request [#2](../../issues/2) from iLexN/analysis-87veEz
  * [d5868b8](../../commit/d5868b8) - __(2016-01-05 01:54:45 -0500)__ Applied fixes from StyleCI
  * [c61d4d5](../../commit/c61d4d5) - __(2016-01-05 14:54:07 +0800)__ cs fix
- * [22ff2f5](../../commit/22ff2f5) - __(2016-01-05 14:45:41 +0800)__ Merge pull request  [#1](../../issues/1) from iLexN/analysis-Xlb5wz
+ * [22ff2f5](../../commit/22ff2f5) - __(2016-01-05 14:45:41 +0800)__ Merge pull request [#1](../../issues/1) from iLexN/analysis-Xlb5wz
  * [caaa8c3](../../commit/caaa8c3) - __(2016-01-05 01:45:23 -0500)__ Applied fixes from StyleCI
  * [5b39f2d](../../commit/5b39f2d) - __(2016-01-05 14:11:34 +0800)__ add css min
  * [88513dc](../../commit/88513dc) - __(2016-01-05 14:11:18 +0800)__ add css min
@@ -147,28 +160,28 @@
  * [a096e41](../../commit/a096e41) - __(2016-03-31 16:57:50 +0800)__ map age 1 / 88 / 99
  * [1bfa9c1](../../commit/1bfa9c1) - __(2016-03-31 15:00:05 +0800)__ cs fix?
  * [178f0cc](../../commit/178f0cc) - __(2016-03-10 17:23:39 +0800)__ change use KSI db and table 2
- * [42e4859](../../commit/42e4859) - __(2016-03-10 17:20:48 +0800)__ Merge pull request  [#1](../../issues/1)1 from iLexN/analysis-XWN3M5
+ * [42e4859](../../commit/42e4859) - __(2016-03-10 17:20:48 +0800)__ Merge pull request [#11](../../issues/11) from iLexN/analysis-XWN3M5
  * [1a929e2](../../commit/1a929e2) - __(2016-03-10 04:20:40 -0500)__ Applied fixes from StyleCI
  * [dd10fe5](../../commit/dd10fe5) - __(2016-03-10 17:01:57 +0800)__ change use KSI db and table
  * [5a0b39f](../../commit/5a0b39f) - __(2016-02-16 11:12:51 +0800)__ update package version
  * [be7a00e](../../commit/be7a00e) - __(2016-02-03 17:28:13 +0800)__ cs fix
  * [3d2059a](../../commit/3d2059a) - __(2016-02-03 17:09:18 +0800)__ update status to ksi
  * [5228fc6](../../commit/5228fc6) - __(2016-01-26 11:28:04 +0800)__ sensiolabs fix
- * [29a80a2](../../commit/29a80a2) - __(2016-01-26 11:26:40 +0800)__ Merge pull request  [#1](../../issues/1)0 from iLexN/analysis-8KZoxQ
+ * [29a80a2](../../commit/29a80a2) - __(2016-01-26 11:26:40 +0800)__ Merge pull request [#10](../../issues/10) from iLexN/analysis-8KZoxQ
  * [081a8ec](../../commit/081a8ec) - __(2016-01-25 22:23:15 -0500)__ Applied fixes from StyleCI
  * [af0cae0](../../commit/af0cae0) - __(2016-01-25 15:00:37 +0800)__ cs fix
  * [9fd3ea7](../../commit/9fd3ea7) - __(2016-01-13 17:53:44 +0800)__ add download to ksi , for later data development
- * [3f38abc](../../commit/3f38abc) - __(2016-01-08 16:06:59 +0800)__ Merge pull request  [#9](../../issues/9) from iLexN/analysis-XVM6Z8
+ * [3f38abc](../../commit/3f38abc) - __(2016-01-08 16:06:59 +0800)__ Merge pull request [#9](../../issues/9) from iLexN/analysis-XVM6Z8
  * [5e79d13](../../commit/5e79d13) - __(2016-01-08 03:02:57 -0500)__ Applied fixes from StyleCI
  * [6505657](../../commit/6505657) - __(2016-01-08 14:48:25 +0800)__ QuoteLayout class implements ArrayAccess , improve the layout more easy
  * [65a9775](../../commit/65a9775) - __(2016-01-08 14:48:06 +0800)__ QuoteLayout class implements ArrayAccess , improve the layout more easy
  * [47da110](../../commit/47da110) - __(2016-01-08 11:21:21 +0800)__ quote download take out unuse method
- * [0a31519](../../commit/0a31519) - __(2016-01-08 11:03:50 +0800)__ Merge pull request  [#7](../../issues/7) from iLexN/break-down-quote-class
- * [3d5bf4e](../../commit/3d5bf4e) - __(2016-01-08 11:01:11 +0800)__ Merge pull request  [#8](../../issues/8) from iLexN/analysis-8LdNn8
+ * [0a31519](../../commit/0a31519) - __(2016-01-08 11:03:50 +0800)__ Merge pull request [#7](../../issues/7) from iLexN/break-down-quote-class
+ * [3d5bf4e](../../commit/3d5bf4e) - __(2016-01-08 11:01:11 +0800)__ Merge pull request [#8](../../issues/8) from iLexN/analysis-8LdNn8
  * [9fa648a](../../commit/9fa648a) - __(2016-01-07 22:00:13 -0500)__ Applied fixes from StyleCI
  * [8cc49ec](../../commit/8cc49ec) - __(2016-01-08 10:52:50 +0800)__ quote -> break down 3 class
  * [b94cb31](../../commit/b94cb31) - __(2016-01-08 10:33:00 +0800)__ line fix
- * [4c57353](../../commit/4c57353) - __(2016-01-07 17:58:42 +0800)__ Merge pull request  [#6](../../issues/6) from iLexN/analysis-qxZ308
+ * [4c57353](../../commit/4c57353) - __(2016-01-07 17:58:42 +0800)__ Merge pull request [#6](../../issues/6) from iLexN/analysis-qxZ308
  * [f728149](../../commit/f728149) - __(2016-01-07 04:58:20 -0500)__ Applied fixes from StyleCI
  * [c5d8e4d](../../commit/c5d8e4d) - __(2016-01-07 17:56:54 +0800)__ line fix
  * [4a47fc6](../../commit/4a47fc6) - __(2016-01-07 17:41:50 +0800)__ static method from Quote to QuoteBuilder
@@ -177,15 +190,15 @@
  * [28ae0ed](../../commit/28ae0ed) - __(2016-01-06 17:56:02 +0800)__ code improve 2
  * [778cdd6](../../commit/778cdd6) - __(2016-01-06 17:55:29 +0800)__ Revert "add .lock"
  * [fe45b08](../../commit/fe45b08) - __(2016-01-06 17:54:47 +0800)__ add .lock
- * [5e6bcb5](../../commit/5e6bcb5) - __(2016-01-06 17:39:46 +0800)__ Merge pull request  [#4](../../issues/4) from iLexN/analysis-zGBJ2q
+ * [5e6bcb5](../../commit/5e6bcb5) - __(2016-01-06 17:39:46 +0800)__ Merge pull request [#4](../../issues/4) from iLexN/analysis-zGBJ2q
  * [5878b9f](../../commit/5878b9f) - __(2016-01-06 04:39:24 -0500)__ Applied fixes from StyleCI
  * [f8230ff](../../commit/f8230ff) - __(2016-01-06 17:36:06 +0800)__ code improve
  * [d5222d5](../../commit/d5222d5) - __(2016-01-06 12:52:22 +0800)__ style fix
  * [ea95807](../../commit/ea95807) - __(2016-01-06 12:36:16 +0800)__ Issues fix
- * [169ed23](../../commit/169ed23) - __(2016-01-05 14:55:02 +0800)__ Merge pull request  [#2](../../issues/2) from iLexN/analysis-87veEz
+ * [169ed23](../../commit/169ed23) - __(2016-01-05 14:55:02 +0800)__ Merge pull request [#2](../../issues/2) from iLexN/analysis-87veEz
  * [d5868b8](../../commit/d5868b8) - __(2016-01-05 01:54:45 -0500)__ Applied fixes from StyleCI
  * [c61d4d5](../../commit/c61d4d5) - __(2016-01-05 14:54:07 +0800)__ cs fix
- * [22ff2f5](../../commit/22ff2f5) - __(2016-01-05 14:45:41 +0800)__ Merge pull request  [#1](../../issues/1) from iLexN/analysis-Xlb5wz
+ * [22ff2f5](../../commit/22ff2f5) - __(2016-01-05 14:45:41 +0800)__ Merge pull request [#1](../../issues/1) from iLexN/analysis-Xlb5wz
  * [caaa8c3](../../commit/caaa8c3) - __(2016-01-05 01:45:23 -0500)__ Applied fixes from StyleCI
  * [5b39f2d](../../commit/5b39f2d) - __(2016-01-05 14:11:34 +0800)__ add css min
  * [88513dc](../../commit/88513dc) - __(2016-01-05 14:11:18 +0800)__ add css min

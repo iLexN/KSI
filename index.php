@@ -86,10 +86,12 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
 
 
     $emailArray = [];
+    $saleArray = [];
     if (isset($allPostVars['pass']['all'])  && $allPostVars['pass']['all'] === 'Pass All') {
         foreach ($allPostVars['quote'] as $oneQuoteAr) {
             if (!empty($oneQuoteAr['sale'])) {
                 array_push($emailArray, \Ksi\QuoteBuilder::pushOneQuote($oneQuoteAr));
+                $saleArray[] = $oneQuoteAr['sale'];
             }
         }
     } else { // pass one
@@ -97,6 +99,7 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
         $oneQuote = $allPostVars['quote'][$processID[0]];
         if (!empty($oneQuote['sale'])) {
             $emailArray = [\Ksi\QuoteBuilder::pushOneQuote($oneQuote)];
+            $saleArray[] = $oneQuote['sale'];
         }
     }
 
@@ -107,7 +110,10 @@ $app->post('/pass', function (ServerRequestInterface $req, ResponseInterface  $r
     }
 
     return $this->view->render($res, 'pass.html.twig',
-                ['emailArray' => $emailArray]
+                [
+                    'emailArray' => $emailArray,
+                    'saleArray'  => array_count_values($saleArray)
+                ]
             );
 
 })->add($authenticate)->setName('pass');
