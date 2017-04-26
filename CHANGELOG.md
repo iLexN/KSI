@@ -1,8 +1,11 @@
 #### [Current]
- * [057f74a](../../commit/057f74a) - __(2017-04-21 09:44:40 +0800)__ add sales summary
+ * [f3cc33a](../../commit/f3cc33a) - __(2017-04-26 16:35:27 +0800)__ increase refresh time from 10s to 20s
+ * [c7c8cff](../../commit/c7c8cff) - __(2017-04-21 10:41:08 +0800)__ add sales summary
+
+#### [2.1.1]
+ * [c7c8cff](../../commit/c7c8cff) - __(2017-04-21 10:41:08 +0800)__ add sales summary
  * [3de3ea6](../../commit/3de3ea6) - __(2017-04-05 12:15:59 +0800)__ change log format change , fix format
  * [2b71b97](../../commit/2b71b97) - __(2017-04-05 12:13:35 +0800)__ change log format change
- * [d2bc6a0](../../commit/d2bc6a0) - __(2017-03-07 14:34:12 +0800)__ ci fix . move function to lib/helper.php
 
 #### [2.1.0]
  * [d2bc6a0](../../commit/d2bc6a0) - __(2017-03-07 14:34:12 +0800)__ ci fix . move function to lib/helper.php
