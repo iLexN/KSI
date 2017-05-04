@@ -27,12 +27,8 @@ class User
     {
         $user = ORM::for_table('ppib_staff', 'ksi')
                 ->select('Name')
-                ->where('Department', 'Motor Sales')
-                ->where('Location', 'Hong Kong')
-                ->where_any_is([
-                    ['Work_Group' => 'New Business'],
-                    ['Work_Group' => 'Expert'],
-                ])
+                ->where('S_KSI', 1)
+                ->where_not_equal('Work_Group', 'Agent')
                 ->where('Expired_Date', '0001-01-01')
                 ->order_by_asc('Name')
                 ->find_array();
