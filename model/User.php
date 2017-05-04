@@ -27,7 +27,7 @@ class User
     {
         $user = ORM::for_table('ppib_staff', 'ksi')
                 ->select('Name')
-                ->where('Department', 'Sales')
+                ->where('Department', 'Motor Sales')
                 ->where('Location', 'Hong Kong')
                 ->where_any_is([
                     ['Work_Group' => 'New Business'],
