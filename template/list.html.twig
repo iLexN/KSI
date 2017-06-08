@@ -35,7 +35,9 @@
             </tr>
         {% for quote in quoteAr %}
                 <tr class="{{ cycle(['altBg2', 'altBg'], loop.index)}}">    
-                    <td><input type="hidden" name="quote[{{ quote.id }}][id]" value="{{ quote.id }}">{{ quote.name }}</td>
+                    <td><input type="hidden" name="quote[{{ quote.id }}][id]" value="{{ quote.id }}">{{ quote.name }}
+                        <br/><span style="color:blue">{{ quote.findKsiDuplicate() | raw }}</span>
+                    </td>
                     <td>{{ quote.contactno }}</td>
                     <td>{{ quote.showAge() }}</td>
                     <td>{{ quote.drivingExp |raw }}</td>

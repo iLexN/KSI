@@ -57,7 +57,20 @@ class QuoteLayout implements \ArrayAccess
     public function hasOldRefID()
     {
         if ($this->ormObjFromLocal->oldRefID != 0) {
-            return '<a href="compare/'.$this->ormObjFromLocal->id.'" class="oldrefid">'.$this->ormObjFromLocal->oldRefID.'</a>';
+            //$salename = $this->getHandlingSale();
+            $salename = '';
+            return '<a href="compare/'.$this->ormObjFromLocal->id.'" class="oldrefid">'.$this->ormObjFromLocal->oldRefID.'</a>' . $salename;
+        }
+
+        return '';
+    }
+
+    private function getHandlingSale(){
+        $ar = ORM::for_table('sales_intelligence', 'ksi')->where('Online_Ref_No',$this->ormObjFromLocal->oldRefID)
+                ->find_one();
+
+        if ( $ar ){
+            return ' - '.$ar['Responsibility_Name'];
         }
 
         return '';
@@ -136,6 +149,37 @@ class QuoteLayout implements \ArrayAccess
         }
 
         return implode(',', $outArray);
+    }
+
+    /**
+     * sql copy from old script.
+     *
+     * set $this->ormObjFromLocal->ksi_si_no = string xx;xx;xx;
+     */
+    public function findKsiDuplicate()
+    {
+        $sqlValueAr = array(
+            'tel' => $this->ormObjFromLocal->contactno,
+            'email' => $this->ormObjFromLocal->email,
+        );
+        $sqlSearch = "
+            SELECT `Sales_Intelligence_Number` , `Date_of_Contact` , `Responsibility_Name`
+            FROM `sales_intelligence`
+            WHERE
+                ( TRIM(IFNULL(`mobile`,'')) <> '' AND REPLACE(`mobile`, ' ', '') = :tel ) OR
+                ( TRIM(IFNULL(`home_phone`,'')) <> '' AND REPLACE(`home_phone`, ' ', '') = :tel ) OR
+                ( TRIM(IFNULL(`bus_phone`,'')) <> '' AND REPLACE(`bus_phone`, ' ', '') = :tel ) OR
+                ( TRIM(IFNULL(`email`,'')) <> '' AND REPLACE(`email`, ' ', '') = :email )
+            Order By `Sales_Intelligence_Number` desc
+            Limit 1
+        ";
+        $ksiDuplicateAr = ORM::for_table('sales_intelligence', 'ksi')->
+                raw_query($sqlSearch, $sqlValueAr)->
+                find_array();
+        if ($ksiDuplicateAr) {
+            //$this->ormObjFromLocal->ksi_si_no = implode(';', array_column($ksiDuplicateAr, 'Sales_Intelligence_Number'));
+            return $ksiDuplicateAr[0]['Date_of_Contact'].'<br/>'.$ksiDuplicateAr[0]['Responsibility_Name'];
+        }
     }
 
     public function offsetSet($offset, $value)
