@@ -64,7 +64,7 @@ class QuoteLayout implements \ArrayAccess
 
         return '';
     }
-
+/*
     private function getHandlingSale(){
         $ar = ORM::for_table('sales_intelligence', 'ksi')->where('Online_Ref_No',$this->ormObjFromLocal->oldRefID)
                 ->find_one();
@@ -75,6 +75,7 @@ class QuoteLayout implements \ArrayAccess
 
         return '';
     }
+ * */
 
     /**
      * layout use function.
