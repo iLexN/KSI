@@ -167,10 +167,11 @@ class QuoteLayout implements \ArrayAccess
             SELECT `Sales_Intelligence_Number` , `Date_of_Contact` , `Responsibility_Name`
             FROM `sales_intelligence`
             WHERE
-                ( TRIM(IFNULL(`mobile`,'')) <> '' AND REPLACE(`mobile`, ' ', '') = :tel ) OR
-                ( TRIM(IFNULL(`home_phone`,'')) <> '' AND REPLACE(`home_phone`, ' ', '') = :tel ) OR
-                ( TRIM(IFNULL(`bus_phone`,'')) <> '' AND REPLACE(`bus_phone`, ' ', '') = :tel ) OR
-                ( TRIM(IFNULL(`email`,'')) <> '' AND REPLACE(`email`, ' ', '') = :email )
+                ( REPLACE(Mobile, ' ', '')  = :tel ) OR
+                ( REPLACE(Home_Phone, ' ', '')  = :tel ) OR
+                ( REPLACE(Bus_Phone, ' ', '')  = :tel ) OR
+                ( REPLACE(Email, ' ', '') = :email ) OR
+                ( REPLACE(Client_Address_4, ' ', '') = :email )
             Order By `Sales_Intelligence_Number` desc
             Limit 1
         ";
@@ -178,7 +179,6 @@ class QuoteLayout implements \ArrayAccess
                 raw_query($sqlSearch, $sqlValueAr)->
                 find_array();
         if ($ksiDuplicateAr) {
-            //$this->ormObjFromLocal->ksi_si_no = implode(';', array_column($ksiDuplicateAr, 'Sales_Intelligence_Number'));
             return $ksiDuplicateAr[0]['Date_of_Contact'].'<br/>'.$ksiDuplicateAr[0]['Responsibility_Name'];
         }
     }

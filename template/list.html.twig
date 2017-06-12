@@ -57,7 +57,7 @@
                     <td>{{ quote.hasOldRefID() | raw }}</td>
                     <td>{{ quote.isPayButtonClick() | raw }}</td>
                     <td>{{ quote.langKeyMap() }}</td>
-                    <td><select name="quote[{{ quote.id }}][sale]">{% include 'chunk/salesSelectOption.html.twig' %}</select> </td>
+                    <td valign="bottom"><select name="quote[{{ quote.id }}][sale]">{% include 'chunk/salesSelectOption.html.twig' %}</select> </td>
                     <td><input type="submit" name="pass[{{ quote.id }}]" value="Pass"></td>
                 </tr>
         {% endfor %}
