@@ -199,7 +199,7 @@ class QuoteLayout implements \ArrayAccess
         $ksiDuplicateAr = ORM::for_table('sales_intelligence', 'ksi')->
                 raw_query($sqlSearch, $sqlValueAr)->
                 find_array();
-        if ($ksiDuplicateAr) {
+        if (!empty($ksiDuplicateAr)) {
             return $ksiDuplicateAr[0]['Date_of_Contact'].'<br/>'.$ksiDuplicateAr[0]['Responsibility_Name'];
         }
 
