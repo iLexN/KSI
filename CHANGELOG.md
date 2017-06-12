@@ -1,6 +1,19 @@
 #### [Current]
- * [f3cc33a](../../commit/f3cc33a) - __(2017-04-26 16:35:27 +0800)__ increase refresh time from 10s to 20s
- * [c7c8cff](../../commit/c7c8cff) - __(2017-04-21 10:41:08 +0800)__ add sales summary
+
+#### [2.2.0]
+ * [251cff4](../../commit/251cff4) - __(2017-06-12 14:14:16 +0800)__ ci fix
+ * [eb9f592](../../commit/eb9f592) - __(2017-06-12 14:10:09 +0800)__ add ks dup cache
+ * [dff47db](../../commit/dff47db) - __(2017-06-12 12:21:24 +0800)__ change ks duplicate sql
+ * [7bb6b2b](../../commit/7bb6b2b) - __(2017-06-08 18:12:33 +0800)__ ci fix
+ * [8792360](../../commit/8792360) - __(2017-06-08 18:03:52 +0800)__ add KSI duplicate check.
+ * [aaa7481](../../commit/aaa7481) - __(2017-05-05 17:45:03 +0800)__ php package update
+ * [9da7623](../../commit/9da7623) - __(2017-05-04 14:36:01 +0800)__ sales list sql updated
+
+#### [2.1.3]
+ * [bd6a80f](../../commit/bd6a80f) - __(2017-05-04 10:22:49 +0800)__ sales list sql change
+
+#### [2.1.2]
+ * [988d0bd](../../commit/988d0bd) - __(2017-04-26 16:36:00 +0800)__ increase refresh time from 10s to 20s
 
 #### [2.1.1]
  * [c7c8cff](../../commit/c7c8cff) - __(2017-04-21 10:41:08 +0800)__ add sales summary
