@@ -12,6 +12,7 @@
 		"kriswallsmith/assetic": "1.4.0",
 		"lmammino/jsmin4assetic": "1.0.0",
                 "natxet/CssMin":"v3.0.4",
-                "monolog/monolog": "1.*"
+                "monolog/monolog": "1.*",
+                "tedivm/stash": "0.14.*"
         }
 }

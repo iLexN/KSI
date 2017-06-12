@@ -14,12 +14,15 @@ class QuoteLayout implements \ArrayAccess
     /* @var $ormObjFromLocal ORM */
     public $ormObjFromLocal;
 
+    private $pool;
+
     /**
      * @param ORM $orm
      */
-    public function __construct(ORM $orm)
+    public function __construct(ORM $orm , $pool)
     {
         $this->ormObjFromLocal = $orm;
+        $this->pool = $pool;
     }
 
     /**
@@ -159,6 +162,24 @@ class QuoteLayout implements \ArrayAccess
      */
     public function findKsiDuplicate()
     {
+        $key = $this->ormObjFromLocal->contactno . $this->ormObjFromLocal->email;
+
+        /* @var $item Stash\Interfaces\ItemInterface */
+        $item = $this->pool->getItem($key);
+        $data = $item->get();
+
+        if ($item->isMiss()) {
+            $item->lock();
+            $item->expiresAfter(60);
+            $data = $this->runKSDup();
+            $this->pool->save($item->set($data));
+        }
+
+        return $data;
+    }
+
+    private function runKSDup()
+    {
         $sqlValueAr = array(
             'tel' => $this->ormObjFromLocal->contactno,
             'email' => $this->ormObjFromLocal->email,
@@ -181,6 +202,8 @@ class QuoteLayout implements \ArrayAccess
         if ($ksiDuplicateAr) {
             return $ksiDuplicateAr[0]['Date_of_Contact'].'<br/>'.$ksiDuplicateAr[0]['Responsibility_Name'];
         }
+
+        return '';
     }
 
     public function offsetSet($offset, $value)

@@ -22,5 +22,9 @@ return [
             'path' => __DIR__.'/logs/'.date('Y-m-d').'.log',
         ],
         'displayErrorDetails' => true,
+        'dataCacheConfig' => [
+            'path'         => __DIR__.'/cache',
+            'expiresAfter' => 60,
+        ],
     ],
 ];

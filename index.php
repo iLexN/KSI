@@ -57,8 +57,10 @@ $app->get('/logout', function (ServerRequestInterface $req, ResponseInterface $r
 
 $app->get('/list', function (ServerRequestInterface $req, ResponseInterface $res, $args = []) {
 
+    $pool = $this['pool'];
+
     $salesList = \Ksi\User::salesList();
-    list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\QuoteBuilder::outstandingQuote();
+    list($totalQuote, $quoteAr, $numberListedQuote) = \Ksi\QuoteBuilder::outstandingQuote($pool);
 
     $data = [
                 'totalQuote'        => $totalQuote,

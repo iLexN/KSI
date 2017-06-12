@@ -45,7 +45,7 @@ class QuoteBuilder
      *
      * @return array [ totalNumber , orm-object , listedNumber ]
      */
-    public static function outstandingQuote()
+    public static function outstandingQuote($pool)
     {
         $manyQuote = ORM::for_table('sales_inte_online', 'ksi')->
                     where('status', 0);
@@ -55,7 +55,7 @@ class QuoteBuilder
 
         $quoteOrmAr = [];
         foreach ($manyQuote2 as $quoteOrm) {
-            $quoteOrmAr[] = new \Ksi\QuoteLayout($quoteOrm);
+            $quoteOrmAr[] = new \Ksi\QuoteLayout($quoteOrm,$pool);
         }
 
         $numberListed = count($quoteOrmAr);

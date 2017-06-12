@@ -40,3 +40,10 @@ $container['logger'] = function (ContainerInterface $c) {
 
     return $logger;
 };
+
+$container['pool'] = function (ContainerInterface $c) {
+    $settings = $c->get('settings');
+    $driver = new \Stash\Driver\FileSystem($settings['dataCacheConfig']);
+
+    return new \Stash\Pool($driver);
+};
